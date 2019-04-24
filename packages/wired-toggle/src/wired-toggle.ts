@@ -15,10 +15,11 @@ export class WiredToggle extends WiredBase {
       cursor: pointer;
       position: relative;
       outline: none;
-    }
-  
-    :host(.wired-pending) {
       opacity: 0;
+    }
+
+    :host(.wired-rendered) {
+      opacity: 1;
     }
   
     :host(.wired-disabled) {
@@ -58,10 +59,10 @@ export class WiredToggle extends WiredBase {
       stroke-width: 3 !important;
       fill: transparent;
     }
-    .knob.unchecked .knobFill path {
+    .knob.unchecked .knobfill path {
       stroke: var(--wired-toggle-off-color, gray);
     }
-    .knob.checked .knobFill path {
+    .knob.checked .knobfill path {
       stroke: var(--wired-toggle-on-color, rgb(63, 81, 181));
     }
     `;
@@ -73,12 +74,6 @@ export class WiredToggle extends WiredBase {
       <svg id="svg"></svg>
     </div>
     `;
-  }
-
-  createRenderRoot() {
-    const root = super.createRenderRoot();
-    this.classList.add('wired-pending');
-    return root;
   }
 
   private refreshDisabledState() {
@@ -122,7 +117,7 @@ export class WiredToggle extends WiredBase {
     this.knob.appendChild(knobFill);
     ellipse(this.knob, 16, 16, 32, 32);
 
-    this.classList.remove('wired-pending');
+    this.classList.add('wired-rendered');
   }
 
   updated(changed: PropertyValues) {
