@@ -93,18 +93,23 @@ export class WiredCard extends WiredBase {
     while (svg.hasChildNodes()) {
       svg.removeChild(svg.lastChild!);
     }
+    // margin enables the lines to wobble, and not try to write outside the SVG element. (happens with large cards)
+    const margin = 6;
+    const margins = 2 * margin;
+    const elevInc = margin;
     const s = this.getBoundingClientRect();
     const elev = Math.min(Math.max(1, this.elevation), 5);
-    const w = s.width + ((elev - 1) * 2);
-    const h = s.height + ((elev - 1) * 2);
+    const w = s.width + ((elev - 1) * elevInc) + margin;
+    const h = s.height + ((elev - 1) * elevInc) + margin;
     svg.setAttribute('width', `${w}`);
     svg.setAttribute('height', `${h}`);
-    rectangle(svg, 2, 2, s.width - 4, s.height - 4);
+
+    rectangle(svg, margin, margin, s.width - margins, s.height - margins);
     for (let i = 1; i < elev; i++) {
-      (line(svg, (i * 2), s.height - 4 + (i * 2), s.width - 4 + (i * 2), s.height - 4 + (i * 2))).style.opacity = `${(85 - (i * 10)) / 100}`;
-      (line(svg, s.width - 4 + (i * 2), s.height - 4 + (i * 2), s.width - 4 + (i * 2), i * 2)).style.opacity = `${(85 - (i * 10)) / 100}`;
-      (line(svg, (i * 2), s.height - 4 + (i * 2), s.width - 4 + (i * 2), s.height - 4 + (i * 2))).style.opacity = `${(85 - (i * 10)) / 100}`;
-      (line(svg, s.width - 4 + (i * 2), s.height - 4 + (i * 2), s.width - 4 + (i * 2), i * 2)).style.opacity = `${(85 - (i * 10)) / 100}`;
+      (line(svg, (i * elevInc), s.height - margins + (i * elevInc), s.width - margins + (i * elevInc), s.height - margins + (i * elevInc))).style.opacity = `${(85 - (i * 10)) / 100}`;
+      (line(svg, s.width - margins + (i * elevInc), s.height - margins + (i * elevInc), s.width - margins + (i * elevInc), i * elevInc)).style.opacity = `${(85 - (i * 10)) / 100}`;
+      (line(svg, (i * elevInc), s.height - margins + (i * elevInc), s.width - margins + (i * elevInc), s.height - margins + (i * elevInc))).style.opacity = `${(85 - (i * 10)) / 100}`;
+      (line(svg, s.width - margins + (i * elevInc), s.height - margins + (i * elevInc), s.width - margins + (i * elevInc), i * elevInc)).style.opacity = `${(85 - (i * 10)) / 100}`;
     }
     this.classList.add('wired-rendered');
   }

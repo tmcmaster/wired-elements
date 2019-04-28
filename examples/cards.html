@@ -14,12 +14,25 @@
 
     wired-card {
       max-width: 100%;
+      padding: 25px;
     }
 
     .card-grid {
       display: grid;
       gap: 30px;
       grid-template-columns: repeat(3, 1fr);
+    }
+    .full {
+      margin-top: 50px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    p {
+      margin-bottom: 0px;
+    }
+    h4 {
+      margin-top: 0;
     }
   </style>
 </head>
@@ -50,7 +63,17 @@
         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
       </p>
     </wired-card>
+
   </div>
+
+  <wired-card class="full">
+    <h4>Card 4</h4>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+  </wired-card>
 
 </body>
 
