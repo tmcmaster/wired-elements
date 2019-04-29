@@ -134,9 +134,14 @@ export class WiredInput extends WiredBase {
       svg.removeChild(svg.lastChild!);
     }
     const s = this.getBoundingClientRect();
-    svg.setAttribute('width', `${s.width}`);
-    svg.setAttribute('height', `${s.height}`);
-    rectangle(svg, 0, 0, s.width, s.height);
+    const elev = 1;
+    const margin = 2;
+    const margins = margin * 2;
+    const height = s.height - margins - elev;
+    const width = s.width - margins - elev;
+    svg.setAttribute('width', `${s.width + margins}`);
+    svg.setAttribute('height', `${s.height + margins}`);
+    rectangle(svg, margin, margin, width, height);
     if (typeof this.pendingValue !== 'undefined') {
       this.input!.value = this.pendingValue;
       delete this.pendingValue;
