@@ -1,8 +1,8 @@
 import { WiredBase, customElement, property, TemplateResult, html, css, CSSResult, query } from './wired-base';
 import { repeat } from 'lit-html/directives/repeat';
 import { WiredCard } from './wired-card';
-import 'wired-item';
-import 'wired-card';
+import './wired-item';
+import './wired-card';
 
 @customElement('wired-tab')
 export class WiredTab extends WiredBase {

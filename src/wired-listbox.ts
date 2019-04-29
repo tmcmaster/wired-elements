@@ -1,7 +1,7 @@
 import { WiredBase, customElement, property, TemplateResult, html, css, CSSResult } from './wired-base';
 import { rectangle } from './wired-lib';
 import { WiredItem } from './wired-item';
-import 'wired-item';
+import './wired-item';
 
 interface ListboxValue {
   value: string;

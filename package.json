@@ -11,7 +11,7 @@
     "bootstrap": "npm install && npm run hoist",
     "hoist": "lerna bootstrap --hoist",
     "dev": "polyserve --npm --module-resolution=node",
-    "tsc": "lerna run tsc",
+    "tsc": "tsc",
     "build": "rollup -c",
     "bundle": "npm run tsc && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
