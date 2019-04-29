@@ -17,8 +17,9 @@ export class WiredTab extends WiredBase {
     :host {
       display: block;
     }
-    wired-card {
+    wired-card > slot {
       display: block;
+      padding: 10px;
     }
     `;
   }
@@ -26,7 +27,7 @@ export class WiredTab extends WiredBase {
   render(): TemplateResult {
     return html`
     <wired-card>
-      <slot></slot>
+      <slot part="body"></slot>
     </wired-card>
     `;
   }

@@ -1,0 +1,31 @@
+{
+  "name": "wired-title",
+  "version": "1.0.0",
+  "description": "Hand-drawn sketchy title - web component",
+  "main": "lib/wired-title.js",
+  "module": "lib/wired-title.js",
+  "types": "lib/wired-title.d.ts",
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmcmaster/wired-elements.git"
+  },
+  "keywords": [
+    "tabs",
+    "tab",
+    "webcomponent",
+    "web component",
+    "rough",
+    "sketchy",
+    "hand-drawn",
+    "hand drawn"
+  ],
+  "author": "Tim McMaster",
+  "license": "MIT",
+  "dependencies": {
+    "wired-lib": "^1.0.0"
+  }
+}

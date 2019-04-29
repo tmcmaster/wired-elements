@@ -1,0 +1,114 @@
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
+
+  <script type="module" src="../packages/wired-app/lib/wired-app.js"></script>
+<!--  <script type="module" src="../packages/wired-input/lib/wired-input.js"></script>-->
+<!--  <script type="module" src="../packages/wired-drawer/lib/wired-drawer.js"></script>-->
+<!--  <script type="module" src="../packages/wired-title/lib/wired-title.js"></script>-->
+  <script type="module" src="../packages/wired-tabs/lib/wired-tabs.js"></script>
+
+<!--  <script src="../packages/all/dist/wired-elements.bundled.js"></script>-->
+<!--  <script type="module" >-->
+<!--    function load(name) {-->
+<!--      return;-->
+
+<!--      if (customElements.get(name)) {-->
+<!--        console.log('already loaded: ' + name);-->
+<!--      } else {-->
+<!--        console.log('loading: ' + name);-->
+<!--        import('./node_modules/' + name + '/lib/' + name + '.js');-->
+<!--      }-->
+<!--    }-->
+
+<!--    import 'lit-element';-->
+<!--    import 'wired-app';-->
+<!--    import 'wired-title';-->
+<!--    import 'wired-drawer';-->
+<!--    import 'wired-input';-->
+<!--    import 'wired-tabs';-->
+<!--    // import 'wired-app';-->
+<!--    // import 'wired-lib';-->
+<!--    // import 'wired-tabs';-->
+
+<!--    load('wired-app');-->
+<!--    load('wired-title');-->
+<!--    load('wired-drawer');-->
+<!--    load('wired-input');-->
+<!--    load('wired-tabs');-->
+<!--    load('wired-app');-->
+<!--    load('wired-lib');-->
+<!--    load('wired-tabs');-->
+
+<!--    // import 'wired-lib';-->
+<!--    // import 'wired-lib/lib/wired-base';-->
+<!--  </script>-->
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    wired-input {
+      margin: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <wired-input value="this is an input"></wired-input>
+
+  <wired-app>
+    <wired-title>This is a title</wired-title>
+
+    <wired-input value="this is an input"></wired-input>
+
+    <wired-tabs selected="Three">
+      <wired-tab name="One">
+        <h4>Card 1</h4>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </wired-tab>
+      <wired-tab name="Two">
+        <h4>Card 2</h4>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </wired-tab>
+      <wired-tab name="Three">
+        <h4>Card 3</h4>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </wired-tab>
+      <wired-tab name="Four">
+        <h4>Card 4</h4>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </wired-tab>
+    </wired-tabs>
+
+
+    <wired-drawer>
+      <wired-title>Menu</wired-title>
+      <wired-input value="this is an input"></wired-input>
+    </wired-drawer>
+
+  </wired-app>
+
+</body>
+
+</html>
