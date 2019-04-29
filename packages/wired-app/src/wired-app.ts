@@ -42,6 +42,7 @@ export class WiredApp extends WiredBase {
                     text-transform: uppercase;
                 }
             </style>
+
             <h1>This is a Application  :-)</h1>
             <slot></slot>
         `;

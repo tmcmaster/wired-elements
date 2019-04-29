@@ -4,47 +4,13 @@
   <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
 
+<!--  <script type="module" src="../packages/wired-card/lib/wired-card.js"></script>-->
   <script type="module" src="../packages/wired-app/lib/wired-app.js"></script>
-<!--  <script type="module" src="../packages/wired-input/lib/wired-input.js"></script>-->
-<!--  <script type="module" src="../packages/wired-drawer/lib/wired-drawer.js"></script>-->
-<!--  <script type="module" src="../packages/wired-title/lib/wired-title.js"></script>-->
+  <script type="module" src="../packages/wired-input/lib/wired-input.js"></script>
+  <script type="module" src="../packages/wired-drawer/lib/wired-drawer.js"></script>
+  <script type="module" src="../packages/wired-title/lib/wired-title.js"></script>
   <script type="module" src="../packages/wired-tabs/lib/wired-tabs.js"></script>
 
-<!--  <script src="../packages/all/dist/wired-elements.bundled.js"></script>-->
-<!--  <script type="module" >-->
-<!--    function load(name) {-->
-<!--      return;-->
-
-<!--      if (customElements.get(name)) {-->
-<!--        console.log('already loaded: ' + name);-->
-<!--      } else {-->
-<!--        console.log('loading: ' + name);-->
-<!--        import('./node_modules/' + name + '/lib/' + name + '.js');-->
-<!--      }-->
-<!--    }-->
-
-<!--    import 'lit-element';-->
-<!--    import 'wired-app';-->
-<!--    import 'wired-title';-->
-<!--    import 'wired-drawer';-->
-<!--    import 'wired-input';-->
-<!--    import 'wired-tabs';-->
-<!--    // import 'wired-app';-->
-<!--    // import 'wired-lib';-->
-<!--    // import 'wired-tabs';-->
-
-<!--    load('wired-app');-->
-<!--    load('wired-title');-->
-<!--    load('wired-drawer');-->
-<!--    load('wired-input');-->
-<!--    load('wired-tabs');-->
-<!--    load('wired-app');-->
-<!--    load('wired-lib');-->
-<!--    load('wired-tabs');-->
-
-<!--    // import 'wired-lib';-->
-<!--    // import 'wired-lib/lib/wired-base';-->
-<!--  </script>-->
 
   <style>
     body {
@@ -53,12 +19,17 @@
     }
 
     wired-input {
-      margin: 50px;
+      //margin: 50px;
+    }
+    wired-card {
+      width:200px;
+      height:200px;
     }
   </style>
 </head>
 
 <body>
+  <wired-card elevation="2">sdfasfd</wired-card>
   <wired-input value="this is an input"></wired-input>
 
   <wired-app>
@@ -71,9 +42,10 @@
         <h4>Card 1</h4>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          magna aliqua.Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </p>
+        <wired-input value="this is an input"></wired-input>
       </wired-tab>
       <wired-tab name="Two">
         <h4>Card 2</h4>
