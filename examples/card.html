@@ -1,8 +1,8 @@
 <html>
 
 <head>
-  <meta http-equiv="content-language" content="en" />
-  <script type="module" src="../packages/wired-card/lib/wired-card.js"></script>
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script type="module" src="../dist/wired-elements.js"></script>
 
   <style>
     body {
@@ -26,8 +26,18 @@
       margin-top: 50px;
       box-sizing: border-box;
       width: 100%;
+      height:500px;
     }
 
+    .inner {
+      width: 100px;
+      height: 100px;
+    }
+
+    .three {
+      width: 300px;
+      height: 150px;
+    }
     p {
       margin-bottom: 0px;
     }
@@ -73,6 +83,12 @@
       magna aliqua.
       Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     </p>
+    <wired-card class="inner">One</wired-card>
+    <wired-card class="inner">Two</wired-card>
+    <wired-card class="three">
+      <wired-card class="inner">Three</wired-card>
+      <wired-card class="inner">Four</wired-card>
+    </wired-card>
   </wired-card>
 
 </body>

@@ -1,4 +1,4 @@
-import { WiredBase, customElement, property, TemplateResult, html, css, CSSResult } from './wired-base';
+import { WiredBase, customElement, property, TemplateResult, html } from './wired-base';
 import { rectangle, line } from './wired-lib';
 
 @customElement('wired-card')
@@ -7,49 +7,56 @@ export class WiredCard extends WiredBase {
 
   private resizeHandler?: EventListenerOrEventListenerObject;
 
-  static get styles(): CSSResult {
-    return css`
-    :host {
-      display: inline-block;
-      position: relative;
-      padding: 10px;
-      opacity: 0;
-    }
-
-    :host(.wired-rendered) {
-      opacity: 1;
-    }
-  
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      pointer-events: none;
-    }
-  
-    svg {
-      display: block;
-    }
-  
-    path {
-      stroke: currentColor;
-      stroke-width: 0.7;
-      fill: transparent;
-    }
-    `;
-  }
-
   render(): TemplateResult {
-    return html`
-    <div>
-      <slot @slotchange="${() => this.requestUpdate()}"></slot>
-    </div>
-    <div class="overlay">
-      <svg id="svg"></svg>
-    </div>
-    `;
+      return html`
+            <style>
+                :host {
+                    display: inline-block;
+                    box-sizing: border-box;
+                    position: relative;
+                    padding: 10px;
+                    opacity: 0;
+                    /*height: 200px;*/
+                    /*width: 300px;*/
+                }
+                
+                :host(.wired-rendered) {
+                    opacity: 1;
+                }
+                
+                .overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    pointer-events: none;
+                }
+                
+                svg {
+                    display: block;
+                }
+                
+                path {
+                    stroke: currentColor;
+                    stroke-width: 0.7;
+                    fill: transparent;
+                }
+                
+                div.body, #body {
+                    display: inline-block;
+                    box-sizing: border-box;
+                    width: 100%;
+                    height: 100%;
+                }
+            </style>
+            <div class="body">
+                <slot id="body" @slotchange="${() => this.requestUpdate()}"></slot>
+            </div>
+            <div class="overlay">
+                <svg id="svg"></svg>
+            </div>
+        `;
   }
 
   connectedCallback() {

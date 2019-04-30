@@ -16,6 +16,12 @@ export class WiredTab extends WiredBase {
     return css`
     :host {
       display: block;
+      width: 100%;
+      height:100%;
+    }
+    wired-card {
+      width: 100%;
+      height: 100%;
     }
     wired-card > slot {
       display: block;
@@ -77,6 +83,14 @@ export class WizardTabs extends WiredBase {
       -webkit-flex-direction: row;
       flex-direction: row;
     }
+    
+    #bar, #tabs { 
+        width: 100%;
+       
+    } 
+    #tabs {
+     height: 100%;
+     }
     `;
   }
 
@@ -88,8 +102,8 @@ export class WizardTabs extends WiredBase {
         @click="${() => this.selected = p.name}">${p.label || p.name}</wired-item>
       `)}
     </div>
-    <div>
-      <slot id="slot" @slotchange="${this.mapPages}"></slot>
+    <div id="tabs">
+      <slot @slotchange="${this.mapPages}"></slot>
     </div>
     `;
   }

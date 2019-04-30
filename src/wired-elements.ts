@@ -17,4 +17,5 @@ export { WiredTab, WizardTabs } from './wired-tabs';
 export { WiredTextarea } from './wired-textarea';
 export { WiredTitle } from './wired-title';
 export { WiredToggle } from './wired-toggle';
+export { WiredToolbar } from './wired-toolbar';
 export { WiredTooltip } from './wired-tooltip';
