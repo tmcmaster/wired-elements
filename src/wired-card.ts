@@ -4,6 +4,7 @@ import { rectangle, line } from './wired-lib';
 @customElement('wired-card')
 export class WiredCard extends WiredBase {
   @property({ type: Number }) elevation = 1;
+  @property({ type: Number }) padding = 10;
 
   private resizeHandler?: EventListenerOrEventListenerObject;
 
@@ -14,10 +15,11 @@ export class WiredCard extends WiredBase {
                     display: inline-block;
                     box-sizing: border-box;
                     position: relative;
-                    padding: 10px;
+                    padding: ${this.padding}px;
                     opacity: 0;
                     /*height: 200px;*/
-                    /*width: 300px;*/
+                    /*width: 100px;*/
+                    //border: solid blue 2px;
                 }
                 
                 :host(.wired-rendered) {
@@ -47,7 +49,19 @@ export class WiredCard extends WiredBase {
                     display: inline-block;
                     box-sizing: border-box;
                     width: 100%;
-                    height: 100%;
+                    //height: 100%;
+                }
+                div.body {
+                    //border: solid orange 2px;
+                    padding: 5px;
+                }
+                div.overlay {
+                    //border: solid green 2px;
+                }
+                
+                slot {
+                    box-sizing: border-box;
+                    //border: solid purple 2px;
                 }
             </style>
             <div class="body">
@@ -101,22 +115,26 @@ export class WiredCard extends WiredBase {
       svg.removeChild(svg.lastChild!);
     }
     // margin enables the lines to wobble, and not try to write outside the SVG element. (happens with large cards)
-    const margin = 6;
+    const s = this.getBoundingClientRect();
+    this.padding = ( s.width + s.height) / 100;
+    const margin = this.padding;
     const margins = 2 * margin;
     const elevInc = margin;
-    const s = this.getBoundingClientRect();
+    const width = s.width - margins;
+    const height = s.height - margins;
+
     const elev = Math.min(Math.max(1, this.elevation), 5);
-    const w = s.width + ((elev - 1) * elevInc) + margin;
-    const h = s.height + ((elev - 1) * elevInc) + margin;
+    const w = width + ((elev - 1) * elevInc) + margins;
+    const h = height + ((elev - 1) * elevInc) + margins;
     svg.setAttribute('width', `${w}`);
     svg.setAttribute('height', `${h}`);
 
-    rectangle(svg, margin, margin, s.width - margins, s.height - margins);
+    rectangle(svg, margin, margin, width, height);
     for (let i = 1; i < elev; i++) {
-      (line(svg, (i * elevInc), s.height - margins + (i * elevInc), s.width - margins + (i * elevInc), s.height - margins + (i * elevInc))).style.opacity = `${(85 - (i * 10)) / 100}`;
-      (line(svg, s.width - margins + (i * elevInc), s.height - margins + (i * elevInc), s.width - margins + (i * elevInc), i * elevInc)).style.opacity = `${(85 - (i * 10)) / 100}`;
-      (line(svg, (i * elevInc), s.height - margins + (i * elevInc), s.width - margins + (i * elevInc), s.height - margins + (i * elevInc))).style.opacity = `${(85 - (i * 10)) / 100}`;
-      (line(svg, s.width - margins + (i * elevInc), s.height - margins + (i * elevInc), s.width - margins + (i * elevInc), i * elevInc)).style.opacity = `${(85 - (i * 10)) / 100}`;
+      (line(svg, (i * elevInc), height + (i * elevInc), width + (i * elevInc), height + (i * elevInc))).style.opacity = `${(85 - (i * 10)) / 100}`;
+      (line(svg, width + (i * elevInc), height + (i * elevInc), width + (i * elevInc), i * elevInc)).style.opacity = `${(85 - (i * 10)) / 100}`;
+      (line(svg, (i * elevInc), height + (i * elevInc), width + (i * elevInc), height + (i * elevInc))).style.opacity = `${(85 - (i * 10)) / 100}`;
+      (line(svg, width + (i * elevInc), height + (i * elevInc), width + (i * elevInc), i * elevInc)).style.opacity = `${(85 - (i * 10)) / 100}`;
     }
     this.classList.add('wired-rendered');
   }

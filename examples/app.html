@@ -3,7 +3,7 @@
 <head>
 
   <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-  <script type="module" src="../dist/wired-elements.bundled.js"></script>
+  <script type="module" src="../dist/wired-elements.js"></script>
 
   <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
@@ -14,32 +14,48 @@
       padding: 0;
     }
 
-    wired-input {
-      //margin: 50px;
-    }
-    wired-card {
-      width:200px;
-      height:200px;
-    }
-    wired-card.title {
-      width:80%;
-      height:40px;
-      margin: auto;
+    wired-app {
+      border: solid red 1px;
+      padding: 10px;
     }
 
+    wired-layout.title {
+      --wired-layout-justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    wired-layout.title > wired-card {
+      width:90%;
+    }
+
+    wired-layout.title > wired-card > wired-layout{
+      --wired-layout-justify-content: space-between;
+    }
+
+    #search {
+      width: 80%;
+    }
+
+    wired-tabs {
+      height: 500px;
+    }
   </style>
 </head>
 
 <body>
-  <wired-card class="title" elevation="2">
-    <wired-input value="this is an input"></wired-input>
-  </wired-card>
 
 
   <wired-app>
-    <wired-title>This is a title</wired-title>
 
-    <wired-input value="this is an input"></wired-input>
+    <wired-layout class="title">
+      <wired-card>
+        <wired-layout>
+          <wired-icon-button slot="right" id="menu">menu</wired-icon-button>
+          <wired-input slot="center" id="search" value="this is an input"></wired-input>
+          <wired-icon-button slot="left" id="more">more_horiz</wired-icon-button>
+        </wired-layout>
+      </wired-card>
+    </wired-layout>
 
     <wired-tabs selected="Three">
       <wired-tab name="One">
@@ -48,6 +64,7 @@
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
           magna aliqua.Ut enim ad minim veniam, quis nostrud
           exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          <wired-input value="this is an input"></wired-input>
         </p>
         <wired-input value="this is an input"></wired-input>
       </wired-tab>

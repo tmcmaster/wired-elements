@@ -1,3 +1,4 @@
+export { WiredApp } from './wired-app';
 export { WiredButton } from './wired-button';
 export { WiredCard } from './wired-card';
 export { WiredCheckbox } from './wired-checkbox';
@@ -7,6 +8,7 @@ export { WiredFab } from './wired-fab';
 export { WiredIconButton } from './wired-icon-button';
 export { WiredInput } from './wired-input';
 export { WiredItem } from './wired-item';
+export { WiredLayout } from './wired-layout';
 export { WiredListbox } from './wired-listbox';
 export { WiredProgress } from './wired-progress';
 export { WiredRadio } from './wired-radio';

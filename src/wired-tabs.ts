@@ -88,6 +88,9 @@ export class WizardTabs extends WiredBase {
         width: 100%;
        
     } 
+    #bar {
+      margin-left: 15px;
+    }
     #tabs {
      height: 100%;
      }
