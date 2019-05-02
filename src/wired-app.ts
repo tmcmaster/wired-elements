@@ -1,5 +1,7 @@
 import { WiredBase, customElement, html } from './wired-base';
 
+import './wired-pages';
+
 @customElement('wired-app')
 export class WiredApp extends WiredBase {
 
@@ -16,16 +18,12 @@ export class WiredApp extends WiredBase {
                     overflow: auto;
                 }
                 :host([hidden]) { display: none; }
-              
-                h1 {
-                    font-family: 'Shadows Into Light', cursive;
-                    text-align: center;
-                    font-size: 50px;
-                    text-transform: uppercase;
-                }
+
             </style>
 
-            <slot></slot>
+            <wired-pages>
+                <slot></slot>
+            </wired-pages>
         `;
     }
 }

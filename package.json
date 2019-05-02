@@ -44,5 +44,11 @@
     "rollup-plugin-terser": "^4.0.1",
     "tslint": "^5.15.0",
     "typescript": "^3.4.1"
+  },
+  "dependencies": {
+    "@material/mwc-icon": "^0.5.0",
+    "@polymer/app-layout": "^3.0.2",
+    "@polymer/iron-pages": "^3.0.1",
+    "roughjs": "^3.1.0"
   }
 }

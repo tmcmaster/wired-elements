@@ -10,6 +10,7 @@ export { WiredInput } from './wired-input';
 export { WiredItem } from './wired-item';
 export { WiredLayout } from './wired-layout';
 export { WiredListbox } from './wired-listbox';
+export { WiredPage, WiredPages } from './wired-pages';
 export { WiredProgress } from './wired-progress';
 export { WiredRadio } from './wired-radio';
 export { WiredRadioGroup } from './wired-radio-group';

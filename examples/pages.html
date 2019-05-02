@@ -1,0 +1,188 @@
+<html>
+
+<head>
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+<!--  <script src="../node_modules/bottom-sheet/dist/bottom-sheet.js"></script>-->
+  <script type="module" src="../dist/wired-elements.js"></script>
+
+  <style>
+    wired-pages {
+      box-sizing: border-box;
+      //border: solid green 2px;
+      width: 100%;
+      height: 100%;
+    }
+
+    /*.top {*/
+    /*    height: 50px;*/
+    /*    box-sizing: border-box;*/
+    /*    //border: solid red 2px;*/
+    /*}*/
+    .middle {
+        box-sizing: border-box;
+        //border: solid blue 2px;
+        //height: 100px;
+      padding-top: 10px;
+    }
+    .bottom {
+        height: 50px;
+        box-sizing: border-box;
+        //border: solid green 2px;
+    }
+
+    wired-card.app {
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+    }
+
+    wired-card.full {
+      width:100%;
+    }
+
+    wired-layout {
+      width: 100%;
+    }
+
+    #search {
+      width: 80%;
+    }
+    #settings {
+      height: 200px;
+    }
+
+    bottom-sheet {
+      width: 100%;
+      height: 200px;
+      box-sizing: border-box;
+      border: solid red 1px;
+    }
+  </style>
+</head>
+
+<body>
+<wired-card class="app">
+  <wired-pages id="pages" page="page-2">
+    <wired-page name="page-1">
+      <h2 class="top" slot="top">Page One</h2>
+      <div class="middle" slot="middle">Middle</div>
+      <wired-layout slot="bottom">
+        <wired-button onclick="paging.prevPage()">Prev</wired-button>
+        <wired-button onclick="paging.firstPage()">Home</wired-button>
+        <wired-button onclick="paging.nextPage()">Next</wired-button>
+      </wired-layout>
+      <wired-drawer slot="drawer">
+        <h2>Menu 1</h2>
+      </wired-drawer>
+    </wired-page>
+
+    <wired-page name="page-2">
+      <wired-layout slot="top">
+        <wired-card class="full">
+          <wired-layout>
+            <wired-icon-button slot="left" id="menu" onclick="openDrawer()">menu</wired-icon-button>
+            <wired-input slot="center" id="search" value="this is an input"></wired-input>
+            <wired-icon-button slot="right" id="more">more_horiz</wired-icon-button>
+          </wired-layout>
+        </wired-card>
+      </wired-layout>
+      <div class="middle" slot="middle">
+        <wired-card>this is a card</wired-card>
+        <wired-card>another card</wired-card>
+        <wired-card>more</wired-card>
+        <wired-card>and more</wired-card>
+        <wired-button id="btn">Submit</wired-button>
+        <wired-button id="btn">Submit</wired-button>
+        <wired-button id="btn">Submit</wired-button>
+        <wired-card>this is a card</wired-card>
+        <wired-card>another card</wired-card>
+        <wired-card>more</wired-card>
+        <wired-card>and more</wired-card>
+      </div>
+      <wired-layout slot="bottom">
+        <wired-button onclick="paging.prevPage()">Prev</wired-button>
+        <wired-button onclick="paging.firstPage()">Home</wired-button>
+        <wired-button onclick="paging.nextPage()">Next</wired-button>
+      </wired-layout>
+      <wired-drawer id="drawer" slot="drawer">
+        <h2>Menu 2</h2>
+      </wired-drawer>
+      <bottom-sheet></bottom-sheet>
+    </wired-page>
+
+    <wired-page name="page-3">
+      <span>Page 2</span>
+      <wired-layout slot="bottom">
+        <wired-button onclick="paging.prevPage()">Prev</wired-button>
+        <wired-button onclick="paging.firstPage()">Home</wired-button>
+        <wired-button onclick="paging.nextPage()">Next</wired-button>
+      </wired-layout>
+      <wired-drawer slot="drawer">
+        <h2>Menu 3</h2>
+      </wired-drawer>
+    </wired-page>
+    <wired-page name="page-4">
+      <span>Page 3</span>
+      <wired-layout slot="bottom">
+        <wired-button onclick="paging.prevPage()">Prev</wired-button>
+        <wired-button onclick="paging.firstPage()">Home</wired-button>
+        <wired-button onclick="paging.nextPage()">Next</wired-button>
+     </wired-layout>
+      <wired-drawer slot="drawer">
+        <h2>Menu 4</h2>
+      </wired-drawer>
+    </wired-page>
+  </wired-pages>
+
+
+</wired-card>
+
+   <script type="module">
+     import 'bottom-sheet';
+   </script>
+
+  <script>
+    function openDrawer() {
+        console.log('About to open drawer.');
+        const drawer = document.getElementById('drawer');
+        drawer.open();
+    }
+    class Paging {
+      constructor() {
+        this.pages = document.getElementById("pages");
+        this.page = 1;
+      }
+
+      nextPage() {
+        if (this.page < 4) {
+          this.changeToPage(this.page + 1);
+        }
+      }
+
+      firstPage() {
+        if (this.page !== 1) {
+          this.changeToPage(1);
+        }
+      }
+
+      prevPage() {
+        if (this.page > 1) {
+          this.changeToPage(this.page - 1);
+        }
+      }
+
+      changeToPage(page) {
+        this.page = page;
+        const pageName = 'page-' + page
+        console.log('Changing to page ' + pageName);
+        this.pages.page = pageName;
+      }
+    }
+
+    let paging = new Paging();
+
+
+  </script>
+</body>
+
+</html>
