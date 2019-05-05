@@ -137,4 +137,7 @@ export class WiredToggle extends WiredBase {
     }
     this.setAttribute('aria-checked', `${this.checked}`);
   }
+
+  refreshElement(): void {
+  }
 }

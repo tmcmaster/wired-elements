@@ -269,3 +269,34 @@ export function hachureEllipseFill(cx: number, cy: number, width: number, height
   const lines = hachureLinesForEllipse(helper, cx, cy, width, height, options);
   return renderHachureLines(lines);
 }
+
+export function tryUntil(action: Function, condition: Function, callback: Function, timeout: number, interval: number) {
+  let value = action();
+  if (condition(value)) {
+    callback(value);
+  } else {
+      console.log('About to try and get the size of element', timeout, interval);
+      const intervalId = setInterval(() => {
+        value = action();
+          if (condition(action)) {
+            console.log('Condition successful: ', value);
+            clearInterval(intervalId);
+            callback(value);
+          } else {
+            console.log('Condition unsuccessful: ', value);
+          }
+      }, interval);
+
+      setTimeout(() => {
+        clearInterval(intervalId);
+      }, timeout);
+  }
+}
+
+export function setupOnloadRefresh() {
+  window.onload = function() {
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 1000);
+  };
+}

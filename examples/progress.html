@@ -38,13 +38,14 @@
   <wired-progress class="custom" value="30"></wired-progress>
 
   <section style="margin-top: 40px;">
-    <wired-progress id="progress"></wired-progress>
+    <wired-progress id="progress" debug="true"></wired-progress>
     <div style="margin-top: 16px;">
       <wired-button id="btns">Start</wired-button>
       <wired-button id="btnr">Reset</wired-button>
     </div>
   </section>
 
+  <wired-helper></wired-helper>
   <script>
     const prog = document.getElementById('progress')
     let timer = 0;

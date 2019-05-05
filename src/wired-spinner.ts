@@ -114,4 +114,7 @@ export class WiredSpinner extends WiredBase {
       this.knob.style.transform = `translate3d(${position[0]}px, ${position[1]}px, 0) rotateZ(${Math.round(this.value * 360 * 2)}deg)`;
     }
   }
+
+  refreshElement(): void {
+  }
 }

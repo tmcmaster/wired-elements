@@ -178,6 +178,18 @@ export class WiredTextarea extends WiredBase {
     if (changed.has('disabled')) {
       this.refreshDisabledState();
     }
+    this.refreshElement();
+  }
+
+  private updateCached() {
+    this.mirror.innerHTML = this.constrain(this.tokens);
+  }
+
+  private onInput() {
+    this.value = this.textarea!.value;
+  }
+
+  refreshElement(): void {
     const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
     const s = this.getBoundingClientRect();
 
@@ -192,13 +204,5 @@ export class WiredTextarea extends WiredBase {
       this.classList.add('wired-rendered');
       this.updateCached();
     }
-  }
-
-  private updateCached() {
-    this.mirror.innerHTML = this.constrain(this.tokens);
-  }
-
-  private onInput() {
-    this.value = this.textarea!.value;
   }
 }

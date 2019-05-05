@@ -45,6 +45,9 @@ export class WiredTab extends WiredBase {
       }
     });
   }
+
+  refreshElement(): void {
+  }
 }
 
 @customElement('wired-tabs')
@@ -106,7 +109,7 @@ export class WizardTabs extends WiredBase {
       `)}
     </div>
     <div id="tabs">
-      <slot @slotchange="${this.mapPages}"></slot>
+      <slot @slotchange="${this.mapPages()}"></slot>
     </div>
     `;
   }
@@ -228,5 +231,8 @@ export class WizardTabs extends WiredBase {
       }
       this.selected = list[index].name || '';
     }
+  }
+
+  refreshElement(): void {
   }
 }

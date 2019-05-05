@@ -126,4 +126,7 @@ export class WiredCheckbox extends WiredBase {
     }
     this.classList.add('wired-rendered');
   }
+
+  refreshElement(): void {
+  }
 }

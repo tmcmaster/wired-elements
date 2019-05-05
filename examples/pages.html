@@ -57,12 +57,22 @@
       box-sizing: border-box;
       border: solid red 1px;
     }
+
+    wired-card.aaa {
+      width:50%;
+      height: 40%;
+      box-sizing: border-box;
+    }
+
+    wired-card.aaa > wired-input {
+      width:97%;
+    }
   </style>
 </head>
 
 <body>
 <wired-card class="app">
-  <wired-pages id="pages" page="page-2">
+  <wired-pages id="pages" page="page-3">
     <wired-page name="page-1">
       <h2 class="top" slot="top">Page One</h2>
       <div class="middle" slot="middle">Middle</div>
@@ -99,6 +109,7 @@
         <wired-card>more</wired-card>
         <wired-card>and more</wired-card>
       </div>
+      <wired-helper slot="middle" debug="true"></wired-helper>
       <wired-layout slot="bottom">
         <wired-button onclick="paging.prevPage()">Prev</wired-button>
         <wired-button onclick="paging.firstPage()">Home</wired-button>
@@ -107,22 +118,40 @@
       <wired-drawer id="drawer" slot="drawer">
         <h2>Menu 2</h2>
       </wired-drawer>
-      <bottom-sheet></bottom-sheet>
+<!--      <bottom-sheet></bottom-sheet>-->
     </wired-page>
 
     <wired-page name="page-3">
-      <span>Page 2</span>
+
+      <wired-title slot="top">Page 3</wired-title>
+      <wired-layout slot="middle" class="full">
+        <wired-card slot="left" class="aaa">
+          <wired-input placeholder="input one"></wired-input>
+          <wired-input placeholder="input two"></wired-input>
+          <wired-radio-group id="rg" selected="one">
+            <wired-radio name="one">One</wired-radio>
+            <wired-radio name="two">Two</wired-radio>
+            <wired-radio name="three">Three</wired-radio>
+            <wired-radio name="four">Four</wired-radio>
+          </wired-radio-group>
+        </wired-card>
+      </wired-layout>
+      <wired-helper slot="middle" debug="true"></wired-helper>
       <wired-layout slot="bottom">
         <wired-button onclick="paging.prevPage()">Prev</wired-button>
         <wired-button onclick="paging.firstPage()">Home</wired-button>
         <wired-button onclick="paging.nextPage()">Next</wired-button>
       </wired-layout>
+
       <wired-drawer slot="drawer">
         <h2>Menu 3</h2>
       </wired-drawer>
+
+
+
     </wired-page>
     <wired-page name="page-4">
-      <span>Page 3</span>
+      <span>Page 4</span>
       <wired-layout slot="bottom">
         <wired-button onclick="paging.prevPage()">Prev</wired-button>
         <wired-button onclick="paging.firstPage()">Home</wired-button>
@@ -137,9 +166,11 @@
 
 </wired-card>
 
-   <script type="module">
-     import 'bottom-sheet';
-   </script>
+<wired-helper></wired-helper>
+
+<!--   <script type="module">-->
+<!--     import 'bottom-sheet';-->
+<!--   </script>-->
 
   <script>
     function openDrawer() {
@@ -150,7 +181,7 @@
     class Paging {
       constructor() {
         this.pages = document.getElementById("pages");
-        this.page = 1;
+        this.page = 3;
       }
 
       nextPage() {

@@ -6,8 +6,6 @@ export class WiredCard extends WiredBase {
   @property({ type: Number }) elevation = 1;
   @property({ type: Number }) padding = 10;
 
-  private resizeHandler?: EventListenerOrEventListenerObject;
-
   render(): TemplateResult {
       return html`
             <style>
@@ -37,6 +35,8 @@ export class WiredCard extends WiredBase {
                 
                 svg {
                     display: block;
+                    width: 100%;
+                    height: 100%;
                 }
                 
                 path {
@@ -45,13 +45,14 @@ export class WiredCard extends WiredBase {
                     fill: transparent;
                 }
                 
-                div.body, #body {
+                #body {
                     display: inline-block;
                     box-sizing: border-box;
                     width: 100%;
-                    //height: 100%;
+                    max-height: 100%;
                 }
                 div.body {
+                    display: inline-block;
                     //border: solid orange 2px;
                     padding: 5px;
                 }
@@ -63,59 +64,38 @@ export class WiredCard extends WiredBase {
                     box-sizing: border-box;
                     //border: solid purple 2px;
                 }
+                #aaa {
+                    width: 100%;
+                }
             </style>
-            <div class="body">
-                <slot id="body" @slotchange="${() => this.requestUpdate()}"></slot>
+            <div id="aaa" class="body">
+                <slot id="body" @slotchange="${() => this.slotChanged()}"></slot>
             </div>
-            <div class="overlay">
+            <div id="overlay" class="overlay">
                 <svg id="svg"></svg>
             </div>
         `;
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-    if (!this.resizeHandler) {
-      this.resizeHandler = this.debounce(this.updated.bind(this), 200, false, this);
-      window.addEventListener('resize', this.resizeHandler);
-    }
-    setTimeout(() => this.updated());
+  slotChanged() {
+    console.log('slot changed');
+    super.requestUpdate();
   }
 
-  disconnectedCallback() {
-    if (super.disconnectedCallback) super.disconnectedCallback();
-    if (this.resizeHandler) {
-      window.removeEventListener('resize', this.resizeHandler);
-      delete this.resizeHandler;
-    }
-  }
-
-  private debounce(func: Function, wait: number, immediate: boolean, context: HTMLElement): EventListenerOrEventListenerObject {
-    let timeout = 0;
-    return () => {
-      const args = arguments;
-      const later = () => {
-        timeout = 0;
-        if (!immediate) {
-          func.apply(context, args);
-        }
-      };
-      const callNow = immediate && !timeout;
-      clearTimeout(timeout);
-      timeout = window.setTimeout(later, wait);
-      if (callNow) {
-        func.apply(context, args);
-      }
-    };
-  }
 
   updated() {
+    this.refreshElement();
+  }
+
+  refreshElement(): void {
     const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
     while (svg.hasChildNodes()) {
       svg.removeChild(svg.lastChild!);
     }
+
     // margin enables the lines to wobble, and not try to write outside the SVG element. (happens with large cards)
     const s = this.getBoundingClientRect();
+    //console.log('CARD RESIZE: ', s);
     this.padding = ( s.width + s.height) / 100;
     const margin = this.padding;
     const margins = 2 * margin;

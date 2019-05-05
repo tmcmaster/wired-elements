@@ -11,6 +11,11 @@
       font-family: sans-serif;
       line-height: 1.5;
     }
+
+    #menu > wired-item {
+      --wired-item-selected-bg: black;
+      --wired-item-hover-bg: blue;
+    }
   </style>
 </head>
 
@@ -32,6 +37,14 @@
   </div>
   <div id="label"></div>
 
+  <div>
+    <wired-listbox id="menu">
+      <wired-item value="one">Number One</wired-item>
+      <wired-item value="two">Number Two</wired-item>
+      <wired-item value="three">Number Three</wired-item>
+    </wired-listbox>
+  </div>
+
   <script>
     const combo = document.getElementById('combo');
     const label = document.getElementById('label');
@@ -39,6 +52,8 @@
       label.textContent = combo.selected;
     });
   </script>
+
+  <wired-helper debug="true"></wired-helper>
 </body>
 
 </html>

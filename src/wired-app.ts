@@ -21,9 +21,10 @@ export class WiredApp extends WiredBase {
 
             </style>
 
-            <wired-pages>
-                <slot></slot>
-            </wired-pages>
+            <slot></slot>
         `;
+    }
+
+    refreshElement(): void {
     }
 }

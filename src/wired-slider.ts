@@ -117,64 +117,7 @@ export class WiredSlider extends WiredBase {
   }
 
   firstUpdated() {
-    const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
-    while (svg.hasChildNodes()) {
-      svg.removeChild(svg.lastChild!);
-    }
-    const s = this.getBoundingClientRect();
-    svg.setAttribute('width', `${s.width}`);
-    svg.setAttribute('height', `${s.height}`);
-    const radius = this.knobradius || 10;
-    this.barWidth = s.width - (2 * radius);
-    this.bar = line(svg, radius, s.height / 2, s.width - radius, s.height / 2);
-    this.bar.classList.add('bar');
-    this.knobGroup = svgNode('g');
-    svg.appendChild(this.knobGroup);
-    this.knob = ellipse(this.knobGroup, radius, s.height / 2, radius * 2, radius * 2);
-    this.knob.classList.add('knob');
-    this.onValueChange();
-    this.classList.add('wired-rendered');
-
-    // aria
-    this.setAttribute('role', 'slider');
-    this.setAttribute('aria-valuemax', `${this.max}`);
-    this.setAttribute('aria-valuemin', `${this.min}`);
-    this.setAriaValue();
-
-    // attach events
-    addListener(this.knob, 'down', (event) => {
-      if (!this.disabled) {
-        this.knobdown(event);
-      }
-    });
-    addListener(this.knob, 'up', () => {
-      if (!this.disabled) {
-        this.resetKnob();
-      }
-    });
-    addListener(this.knob, 'track', (event) => {
-      if (!this.disabled) {
-        this.onTrack(event);
-      }
-    });
-    this.addEventListener('keydown', (event) => {
-      switch (event.keyCode) {
-        case 38:
-        case 39:
-          this.incremenent();
-          break;
-        case 37:
-        case 40:
-          this.decrement();
-          break;
-        case 36:
-          this.setValue(this.min);
-          break;
-        case 35:
-          this.setValue(this.max);
-          break;
-      }
-    });
+    this.refreshElement();
   }
 
   updated(changed: PropertyValues) {
@@ -285,5 +228,66 @@ export class WiredSlider extends WiredBase {
     this.resetKnob();
     this.setValue(this.intermediateValue);
     this.pct = (this.value - this.min) / (this.max - this.min);
+  }
+
+  refreshElement(): void {
+    const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
+    while (svg.hasChildNodes()) {
+      svg.removeChild(svg.lastChild!);
+    }
+    const s = this.getBoundingClientRect();
+    svg.setAttribute('width', `${s.width}`);
+    svg.setAttribute('height', `${s.height}`);
+    const radius = this.knobradius || 10;
+    this.barWidth = s.width - (2 * radius);
+    this.bar = line(svg, radius, s.height / 2, s.width - radius, s.height / 2);
+    this.bar.classList.add('bar');
+    this.knobGroup = svgNode('g');
+    svg.appendChild(this.knobGroup);
+    this.knob = ellipse(this.knobGroup, radius, s.height / 2, radius * 2, radius * 2);
+    this.knob.classList.add('knob');
+    this.onValueChange();
+    this.classList.add('wired-rendered');
+
+    // aria
+    this.setAttribute('role', 'slider');
+    this.setAttribute('aria-valuemax', `${this.max}`);
+    this.setAttribute('aria-valuemin', `${this.min}`);
+    this.setAriaValue();
+
+    // attach events
+    addListener(this.knob, 'down', (event) => {
+      if (!this.disabled) {
+        this.knobdown(event);
+      }
+    });
+    addListener(this.knob, 'up', () => {
+      if (!this.disabled) {
+        this.resetKnob();
+      }
+    });
+    addListener(this.knob, 'track', (event) => {
+      if (!this.disabled) {
+        this.onTrack(event);
+      }
+    });
+    this.addEventListener('keydown', (event) => {
+      switch (event.keyCode) {
+        case 38:
+        case 39:
+          this.incremenent();
+          break;
+        case 37:
+        case 40:
+          this.decrement();
+          break;
+        case 36:
+          this.setValue(this.min);
+          break;
+        case 35:
+          this.setValue(this.max);
+          break;
+      }
+    });
   }
 }

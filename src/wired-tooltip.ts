@@ -241,4 +241,7 @@ export class WiredTooltip extends WiredBase {
     this.style.left = tooltipLeft + 'px';
     this.style.top = tooltipTop + 'px';
   }
+
+  refreshElement(): void {
+  }
 }

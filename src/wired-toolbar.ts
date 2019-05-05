@@ -30,4 +30,7 @@ export class WiredToolbar extends WiredBase {
             </wired-card>
         `;
     }
+
+    refreshElement(): void {
+    }
 }

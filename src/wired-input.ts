@@ -26,10 +26,10 @@ export class WiredInput extends WiredBase {
     connectedCallback() {
         super.connectedCallback();
         if (!this.resizeHandler) {
-            this.resizeHandler = this.debounce(this.updateRectangle.bind(this), 200, false, this);
+            this.resizeHandler = this.debounce(this.refreshElement.bind(this), 200, false, this);
             window.addEventListener('resize', this.resizeHandler);
         }
-        setTimeout(() => this.updateRectangle());
+        setTimeout(() => this.refreshElement());
     }
 
     disconnectedCallback() {
@@ -162,10 +162,10 @@ export class WiredInput extends WiredBase {
       if (changed.has('disabled')) {
           this.refreshDisabledState();
       }
-      this.updateRectangle();
+      this.refreshElement();
   }
 
-  updateRectangle() {
+  refreshElement(): void {
     const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
     while (svg.hasChildNodes()) {
       svg.removeChild(svg.lastChild!);
@@ -198,4 +198,5 @@ export class WiredInput extends WiredBase {
     event.stopPropagation();
     this.fireEvent(event.type, { sourceEvent: event });
   }
+
 }

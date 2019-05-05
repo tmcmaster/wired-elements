@@ -164,4 +164,7 @@ export class WiredRadioGroup extends WiredBase {
       }
     }
   }
+
+  refreshElement(): void {
+  }
 }

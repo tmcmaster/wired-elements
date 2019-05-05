@@ -112,6 +112,20 @@ export class WiredFab extends WiredBase {
     if (changed.has('disabled')) {
       this.refreshDisabledState();
     }
+
+    this.refreshElement();
+  }
+
+  private refreshDisabledState() {
+    if (this.disabled) {
+      this.classList.add('wired-disabled');
+    } else {
+      this.classList.remove('wired-disabled');
+    }
+    this.tabIndex = this.disabled ? -1 : +(this.getAttribute('tabindex') || 0);
+  }
+
+  refreshElement(): void {
     const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
     while (svg.hasChildNodes()) {
       svg.removeChild(svg.lastChild!);
@@ -123,14 +137,5 @@ export class WiredFab extends WiredBase {
     const g = hachureEllipseFill(min / 2, min / 2, min, min);
     svg.appendChild(g);
     this.classList.add('wired-rendered');
-  }
-
-  private refreshDisabledState() {
-    if (this.disabled) {
-      this.classList.add('wired-disabled');
-    } else {
-      this.classList.remove('wired-disabled');
-    }
-    this.tabIndex = this.disabled ? -1 : +(this.getAttribute('tabindex') || 0);
   }
 }

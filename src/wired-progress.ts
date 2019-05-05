@@ -89,6 +89,10 @@ export class WiredProgress extends WiredBase {
     }
 
     updated() {
+        this.refreshElement();
+    }
+
+    refreshElement(): void {
         const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
         while (svg.hasChildNodes()) {
             svg.removeChild(svg.lastChild!);

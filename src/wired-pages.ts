@@ -1,4 +1,4 @@
-import { WiredBase, property, customElement, html } from './wired-base';
+import { WiredBase, property, customElement, html, query, PropertyValues } from './wired-base';
 
 import '@polymer/iron-pages';
 import './wired-card';
@@ -7,6 +7,9 @@ import './wired-card';
 export class WiredPages extends WiredBase {
 
     @property({ type: String }) page = '';
+
+    @query('slot')
+    private slotElement?: HTMLSlotElement;
 
     constructor() {
         super();
@@ -31,9 +34,35 @@ export class WiredPages extends WiredBase {
             </style>
             
             <iron-pages attr-for-selected="name" selected="${this.page}">
-                <slot></slot>
+                <slot id="pages" @slotchange="${this.pagesHaveChanged()}"></slot>
             </iron-pages>
         `;
+    }
+    refreshElement(): void {
+    }
+
+    // TODO: pages that are not visible required the resize event. ???ß
+    private pagesHaveChanged() {
+        console.log('-------- PAGES HAVE CHANGED.');
+        if (!this.slotElement && this.shadowRoot) {
+            // this.slotElement = this.shadowRoot.getElementById('pages') as HTMLSlotElement;
+            //
+            // const pages = this.slotElement.assignedNodes();
+            // pages.forEach((page) => {
+            //     console.log('------ found page: ' + page);
+            // });
+        }
+    }
+
+    updated(changed: PropertyValues) {
+        if (changed.has('page')) {
+            console.log('Page has changed.');
+            this.pageChanged();
+        }
+    }
+
+    pageChanged() {
+        window.dispatchEvent(new Event('resize'));
     }
 }
 
@@ -106,5 +135,8 @@ export class WiredPage extends WiredBase {
             
             <slot name="drawer"></slot>
         `;
+    }
+
+    refreshElement(): void {
     }
 }

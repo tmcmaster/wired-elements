@@ -331,4 +331,7 @@ export class WiredCombo extends WiredBase {
     event.stopPropagation();
     this.setCardShowing(!this.cardShowing);
   }
+
+  refreshElement(): void {
+  }
 }

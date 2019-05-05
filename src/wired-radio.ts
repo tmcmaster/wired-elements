@@ -126,4 +126,7 @@ export class WiredRadio extends WiredBase {
     this.dot.style.display = this.checked ? '' : 'none';
     this.classList.add('wired-rendered');
   }
+
+  refreshElement(): void {
+  }
 }

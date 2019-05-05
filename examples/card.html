@@ -34,10 +34,6 @@
       height: 100px;
     }
 
-    .three {
-      width: 300px;
-      height: 150px;
-    }
     p {
       margin-bottom: 0px;
     }
@@ -60,7 +56,7 @@
 </head>
 
 <body>
-
+    <wired-helper></wired-helper>
     <wired-card class="test">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -100,7 +96,7 @@
 
   </div>
 
-  <wired-card class="full">
+  <wired-card id="bb" class="full">
     <h4>Card 4</h4>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -109,7 +105,13 @@
     </p>
     <wired-card class="inner">One</wired-card>
     <wired-card class="inner">Two</wired-card>
-    <wired-card class="three">
+    <wired-card id="aa" class="three">
+      <wired-card class="inner">Three</wired-card>
+      <wired-card class="inner">Four</wired-card>
+      <wired-card class="inner">Three</wired-card>
+      <wired-card class="inner">Four</wired-card>
+      <wired-card class="inner">Three</wired-card>
+      <wired-card class="inner">Four</wired-card>
       <wired-card class="inner">Three</wired-card>
       <wired-card class="inner">Four</wired-card>
     </wired-card>

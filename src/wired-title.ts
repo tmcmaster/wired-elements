@@ -22,4 +22,7 @@ export class WiredTitle extends WiredBase {
             <h1><slot></slot></h1>
         `;
     }
+
+    refreshElement(): void {
+    }
 }

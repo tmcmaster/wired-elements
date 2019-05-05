@@ -8,71 +8,74 @@ export class WiredButton extends WiredBase {
 
   static get styles(): CSSResult {
     return css`
-    :host {
-      display: inline-block;
-      font-family: inherit;
-      cursor: pointer;
-      padding: 8px 10px;
-      position: relative;
-      text-align: center;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      -webkit-user-select: none;
-      user-select: none;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      display: inline-flex;
-      outline: none;
-      letter-spacing: 1.25px;
-      font-size: 14px;
-      text-transform: uppercase;
-      opacity: 0;
-    }
 
-    :host(.wired-rendered) {
-      opacity: 1;
-    }
-
-    :host(:active) path {
-      transform: scale(0.97) translate(1.5%, 1.5%);
-    }
-
-    :host(.wired-disabled) {
-      opacity: 0.6 !important;
-      background: rgba(0, 0, 0, 0.07);
-      cursor: default;
-      pointer-events: none;
-    }
-
-    :host(:focus) path {
-      stroke-width: 1.5;
-    }
-
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      pointer-events: none;
-    }
-
-    svg {
-      display: block;
-    }
-
-    path {
-      stroke: currentColor;
-      stroke-width: 0.7;
-      fill: transparent;
-      transition: transform 0.05s ease;
-    }
     `;
   }
 
   render(): TemplateResult {
     return html`
+    <style>
+      :host {
+        display: inline-block;
+        font-family: inherit;
+        cursor: pointer;
+        padding: 8px 10px;
+        position: relative;
+        text-align: center;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        display: inline-flex;
+        outline: none;
+        letter-spacing: 1.25px;
+        font-size: 14px;
+        text-transform: uppercase;
+        opacity: 0;
+      }
+  
+      :host(.wired-rendered) {
+        opacity: 1;
+      }
+  
+      :host(:active) path {
+        transform: scale(0.97) translate(1.5%, 1.5%);
+      }
+  
+      :host(.wired-disabled) {
+        opacity: 0.6 !important;
+        background: rgba(0, 0, 0, 0.07);
+        cursor: default;
+        pointer-events: none;
+      }
+  
+      :host(:focus) path {
+        stroke-width: 1.5;
+      }
+  
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+      }
+  
+      svg {
+        display: block;
+      }
+  
+      path {
+        stroke: currentColor;
+        stroke-width: 0.7;
+        fill: transparent;
+        transition: transform 0.05s ease;
+      }
+    </style>
     <slot></slot>
     <div class="overlay">
       <svg id="svg"></svg>
@@ -123,5 +126,9 @@ export class WiredButton extends WiredBase {
       this.classList.remove('wired-disabled');
     }
     this.tabIndex = this.disabled ? -1 : +(this.getAttribute('tabindex') || 0);
+  }
+
+  refreshElement(): void {
+    this.requestUpdate();
   }
 }

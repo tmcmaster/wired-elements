@@ -129,4 +129,8 @@ export class WiredIconButton extends WiredBase {
     }
     this.tabIndex = this.disabled ? -1 : +(this.getAttribute('tabindex') || 0);
   }
+
+
+  refreshElement(): void {
+  }
 }

@@ -81,4 +81,7 @@ export class WiredDrawer extends WiredBase {
             </app-drawer>
         `;
     }
+    
+    refreshElement(): void {
+    }
 }
