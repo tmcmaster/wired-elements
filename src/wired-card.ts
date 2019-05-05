@@ -78,7 +78,7 @@ export class WiredCard extends WiredBase {
   }
 
   slotChanged() {
-    console.log('slot changed');
+    if (this.debug) console.log('slot changed');
     super.requestUpdate();
   }
 

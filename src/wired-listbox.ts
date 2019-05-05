@@ -104,7 +104,7 @@ export class WiredListbox extends WiredBase {
                 if (element.tagName === 'WIRED-ITEM') {
                     element.setAttribute('role', 'option');
                     this.itemNodes.push(element as WiredItem);
-                    console.log('Added WiredItem: ', element);
+                    if (this.debug) console.log('Added WiredItem: ', element);
                 } else if (element.tagName === 'SLOT') {
                     console.log('found slot: ', element);
                     const nodes = (element as HTMLSlotElement).assignedNodes();

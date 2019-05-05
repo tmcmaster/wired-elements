@@ -14,7 +14,7 @@ export class WiredDrawer extends WiredBase {
 
     constructor() {
         super();
-        console.log('Constructing the drawer.');
+        if (this.debug) console.log('Constructing the drawer.');
         // if (this.shadowRoot) {
         //     this.drawer = this.shadowRoot.getElementById('drawer') as AppDrawerElement;
         //     if (!this.drawer) {
@@ -30,7 +30,7 @@ export class WiredDrawer extends WiredBase {
         setTimeout(() => {
             if (this.shadowRoot) {
                 this.drawer = this.shadowRoot.getElementById('drawer') as AppDrawerElement;
-                console.log('DRAWER: ', this.drawer);
+                if (this.debug) console.log('DRAWER: ', this.drawer);
                 if (!this.drawer) {
                     console.log('Could not find the drawer.');
                 }

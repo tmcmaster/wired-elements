@@ -40,10 +40,6 @@
       right: 0;
     }
   </style>
-  <script type="module">
-    import {WiredHelper} from '../lib/wired-helper';
-    new WiredHelper().setupOnloadRefresh();
-  </script>
 </head>
 
 <body onkeypress="showMenu(event)">
@@ -55,7 +51,7 @@
       <wired-item role="option" value="three">Number Three</wired-item>
     </wired-menu>
   </div>
-
+  <wired-helper></wired-helper>
 <!--  <wired-listbox id="combo" selected="two">-->
 <!--    <wired-item value="one">Number One</wired-item>-->
 <!--    <wired-item value="two">Number Two</wired-item>-->

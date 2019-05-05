@@ -4,7 +4,7 @@ export * from 'lit-element';
 export abstract class WiredBase extends LitElement {
   @property({ type: Boolean }) debug = false;
 
-  private resizeListener?: EventListenerOrEventListenerObject;
+  private refreshListener?: EventListenerOrEventListenerObject;
 
   fireEvent(name: string, detail?: any, bubbles: boolean = true, composed: boolean = true) {
     if (name) {
@@ -22,43 +22,24 @@ export abstract class WiredBase extends LitElement {
 
   connectedCallback() {
     if (super.connectedCallback) super.connectedCallback();
-    if (!this.resizeListener) {
-      this.resizeListener = this.delayCall(this.refreshAfterResize.bind(this), 200, false, this);
-      window.addEventListener('resize', this.resizeListener);
+    if (!this.refreshListener) {
+      this.refreshListener = this.refreshAfterResize.bind(this);
+      window.addEventListener('refresh-element', this.refreshListener);
     }
     setTimeout(() => this.refreshAfterResize(), 10);
   }
 
   disconnectedCallback() {
     if (super.disconnectedCallback) super.disconnectedCallback();
-    if (this.resizeListener) {
-      window.removeEventListener('resize', this.resizeListener);
-      delete this.resizeListener;
+    if (this.refreshListener) {
+      window.removeEventListener('refresh-element', this.refreshListener);
+      delete this.refreshListener;
     }
-  }
-
-  private delayCall(func: Function, wait: number, immediate: boolean, context: HTMLElement): EventListenerOrEventListenerObject {
-    let timeout = 0;
-    return () => {
-      const args = arguments;
-      const later = () => {
-        timeout = 0;
-        if (!immediate) {
-          func.apply(context, args);
-        }
-      };
-      const callNow = immediate && !timeout;
-      clearTimeout(timeout);
-      timeout = window.setTimeout(later, wait);
-      if (callNow) {
-        func.apply(context, args);
-      }
-    };
   }
 
   private refreshAfterResize() {
       if (this.refreshElement) {
-        if (this.debug) console.log('Refreshing wired-element: ', this);
+        if (this.debug) console.log('Refreshing wired-element: ', this.tagName);
         this.refreshElement();
       }
   }
