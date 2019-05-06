@@ -1,10 +1,10 @@
-import { WiredBase, customElement, html } from './wired-base';
+import {WiredBase, customElement, html} from './wired-base';
 
 @customElement('wired-title')
 export class WiredTitle extends WiredBase {
 
     render() {
-        return html `
+        return html`
             <style>
                 :host { 
                     box-sizing: border-box;

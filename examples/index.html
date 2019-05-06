@@ -15,8 +15,8 @@
 
         iframe {
             box-sizing: border-box;
-            width:99%;
-            height:97%;
+            width: 99%;
+            height: 97%;
             border: none;
         }
 
@@ -35,12 +35,12 @@
             //const testing = 'slider';
 
             const examples = [
-                'card','checkbox', 'combo', 'drawer','fab','icon-button',
-                'input', 'listbox', 'progress','radio','slider','spinner',
-                'tabs','textarea','title','toggle'
+                'card', 'checkbox', 'combo', 'drawer', 'fab', 'icon-button',
+                'input', 'listbox', 'progress', 'radio', 'slider', 'spinner',
+                'tabs', 'textarea', 'title', 'toggle'
             ];
 
-            setTimeout(function() {
+            setTimeout(function () {
 
                 const tabs = document.createElement('wired-tabs');
 
@@ -73,20 +73,20 @@
 
         // CTRL-T to open current tab in a new browser tab.
         // monitorEvents($0) to monitor key strokes
-        function loadInNewTab(e){
+        function loadInNewTab(e) {
             if (e.charCode === 20 && e.ctrlKey) {
                 const tabs = document.getElementById('tabs');
                 const selected = tabs.selected;
                 const url = `${selected}.html`;
                 console.log('URL: ', url);
-                window.open(url,'_blank');
+                window.open(url, '_blank');
             }
         }
     </script>
 </head>
 
 <body onkeypress="loadInNewTab(event)">
-    <wired-helper></wired-helper>
+<wired-helper></wired-helper>
 </body>
 
 </html>

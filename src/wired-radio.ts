@@ -1,17 +1,17 @@
-import { WiredBase, customElement, property, TemplateResult, html, css, CSSResult, PropertyValues } from './wired-base';
-import { ellipse } from './wired-lib';
+import {WiredBase, customElement, property, TemplateResult, html, css, CSSResult, PropertyValues} from './wired-base';
+import {ellipse} from './wired-lib';
 
 @customElement('wired-radio')
 export class WiredRadio extends WiredBase {
-  @property({ type: Boolean }) checked = false;
-  @property({ type: Boolean, reflect: true }) disabled = false;
-  @property({ type: String }) name?: string;
-  @property({ type: Number }) iconsize = 24;
+    @property({type: Boolean}) checked = false;
+    @property({type: Boolean, reflect: true}) disabled = false;
+    @property({type: String}) name?: string;
+    @property({type: Number}) iconsize = 24;
 
-  private dot?: SVGElement;
+    private dot?: SVGElement;
 
-  static get styles(): CSSResult {
-    return css`
+    static get styles(): CSSResult {
+        return css`
     :host {
       display: inline-block;
       position: relative;
@@ -66,10 +66,10 @@ export class WiredRadio extends WiredBase {
       fill: var(--wired-radio-icon-color, currentColor);
     }
     `;
-  }
+    }
 
-  render(): TemplateResult {
-    return html`
+    render(): TemplateResult {
+        return html`
     <div id="container" @click="${this.toggleCheck}">
       <div id="checkPanel" class="inline">
         <svg id="svg" width="0" height="0"></svg>
@@ -79,54 +79,54 @@ export class WiredRadio extends WiredBase {
       </div>
     </div>
     `;
-  }
-
-  private refreshDisabledState() {
-    if (this.disabled) {
-      this.classList.add('wired-disabled');
-    } else {
-      this.classList.remove('wired-disabled');
     }
-    this.tabIndex = this.disabled ? -1 : +(this.getAttribute('tabindex') || 0);
-  }
 
-  toggleCheck() {
-    this.checked = !(this.checked || false);
-    this.fireEvent('change', { checked: this.checked });
-  }
-
-  firstUpdated() {
-    this.setAttribute('role', 'checkbox');
-    this.addEventListener('keydown', (event) => {
-      if ((event.keyCode === 13) || (event.keyCode === 32)) {
-        event.preventDefault();
-        this.toggleCheck();
-      }
-    });
-  }
-
-  updated(changed: PropertyValues) {
-    if (changed.has('disabled')) {
-      this.refreshDisabledState();
+    private refreshDisabledState() {
+        if (this.disabled) {
+            this.classList.add('wired-disabled');
+        } else {
+            this.classList.remove('wired-disabled');
+        }
+        this.tabIndex = this.disabled ? -1 : +(this.getAttribute('tabindex') || 0);
     }
-    const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
-    while (svg.hasChildNodes()) {
-      svg.removeChild(svg.lastChild!);
+
+    toggleCheck() {
+        this.checked = !(this.checked || false);
+        this.fireEvent('change', {checked: this.checked});
     }
-    this.dot = undefined;
-    const s = { width: this.iconsize || 24, height: this.iconsize || 24 };
-    svg.setAttribute('width', `${s.width}`);
-    svg.setAttribute('height', `${s.height}`);
-    ellipse(svg, s.width / 2, s.height / 2, s.width, s.height);
 
-    const iw = Math.max(s.width * 0.6, 5);
-    const ih = Math.max(s.height * 0.6, 5);
-    this.dot = ellipse(svg, s.width / 2, s.height / 2, iw, ih);
-    this.dot.classList.add('filledPath');
-    this.dot.style.display = this.checked ? '' : 'none';
-    this.classList.add('wired-rendered');
-  }
+    firstUpdated() {
+        this.setAttribute('role', 'checkbox');
+        this.addEventListener('keydown', (event) => {
+            if ((event.keyCode === 13) || (event.keyCode === 32)) {
+                event.preventDefault();
+                this.toggleCheck();
+            }
+        });
+    }
 
-  refreshElement(): void {
-  }
+    updated(changed: PropertyValues) {
+        if (changed.has('disabled')) {
+            this.refreshDisabledState();
+        }
+        const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
+        while (svg.hasChildNodes()) {
+            svg.removeChild(svg.lastChild!);
+        }
+        this.dot = undefined;
+        const s = {width: this.iconsize || 24, height: this.iconsize || 24};
+        svg.setAttribute('width', `${s.width}`);
+        svg.setAttribute('height', `${s.height}`);
+        ellipse(svg, s.width / 2, s.height / 2, s.width, s.height);
+
+        const iw = Math.max(s.width * 0.6, 5);
+        const ih = Math.max(s.height * 0.6, 5);
+        this.dot = ellipse(svg, s.width / 2, s.height / 2, iw, ih);
+        this.dot.classList.add('filledPath');
+        this.dot.style.display = this.checked ? '' : 'none';
+        this.classList.add('wired-rendered');
+    }
+
+    refreshElement(): void {
+    }
 }

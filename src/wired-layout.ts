@@ -1,11 +1,11 @@
-import { WiredBase, customElement, html } from './wired-base';
+import {WiredBase, customElement, html} from './wired-base';
 
 @customElement('wired-layout')
 export class WiredLayout extends WiredBase {
 
     render() {
         // noinspection CssUnresolvedCustomProperty
-        return html `
+        return html`
             <style>
                 :host { 
                     box-sizing: border-box;

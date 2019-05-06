@@ -1,19 +1,19 @@
-import { WiredBase, customElement, property, TemplateResult, html, css, CSSResult, PropertyValues } from './wired-base';
-import { rectangle, line } from './wired-lib';
+import {WiredBase, customElement, property, TemplateResult, html, css, CSSResult, PropertyValues} from './wired-base';
+import {rectangle, line} from './wired-lib';
 
 @customElement('wired-button')
 export class WiredButton extends WiredBase {
-  @property({ type: Number }) elevation = 1;
-  @property({ type: Boolean, reflect: true }) disabled = false;
+    @property({type: Number}) elevation = 1;
+    @property({type: Boolean, reflect: true}) disabled = false;
 
-  static get styles(): CSSResult {
-    return css`
+    static get styles(): CSSResult {
+        return css`
 
     `;
-  }
+    }
 
-  render(): TemplateResult {
-    return html`
+    render(): TemplateResult {
+        return html`
     <style>
       :host {
         display: inline-block;
@@ -81,54 +81,54 @@ export class WiredButton extends WiredBase {
       <svg id="svg"></svg>
     </div>
     `;
-  }
-
-  firstUpdated() {
-    this.addEventListener('keydown', (event) => {
-      if ((event.keyCode === 13) || (event.keyCode === 32)) {
-        event.preventDefault();
-        this.click();
-      }
-    });
-    this.setAttribute('role', 'button');
-    this.setAttribute('aria-label', this.textContent || this.innerText);
-    setTimeout(() => this.requestUpdate());
-  }
-
-  updated(changed: PropertyValues) {
-    if (changed.has('disabled')) {
-      this.refreshDisabledState();
     }
-    const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
-    while (svg.hasChildNodes()) {
-      svg.removeChild(svg.lastChild!);
-    }
-    const s = this.getBoundingClientRect();
-    const elev = Math.min(Math.max(1, this.elevation), 5);
-    const w = s.width + ((elev - 1) * 2);
-    const h = s.height + ((elev - 1) * 2);
-    svg.setAttribute('width', `${w}`);
-    svg.setAttribute('height', `${h}`);
-    rectangle(svg, 0, 0, s.width, s.height);
-    for (let i = 1; i < elev; i++) {
-      (line(svg, (i * 2), s.height + (i * 2), s.width + (i * 2), s.height + (i * 2))).style.opacity = `${(75 - (i * 10)) / 100}`;
-      (line(svg, s.width + (i * 2), s.height + (i * 2), s.width + (i * 2), i * 2)).style.opacity = `${(75 - (i * 10)) / 100}`;
-      (line(svg, (i * 2), s.height + (i * 2), s.width + (i * 2), s.height + (i * 2))).style.opacity = `${(75 - (i * 10)) / 100}`;
-      (line(svg, s.width + (i * 2), s.height + (i * 2), s.width + (i * 2), i * 2)).style.opacity = `${(75 - (i * 10)) / 100}`;
-    }
-    this.classList.add('wired-rendered');
-  }
 
-  private refreshDisabledState() {
-    if (this.disabled) {
-      this.classList.add('wired-disabled');
-    } else {
-      this.classList.remove('wired-disabled');
+    firstUpdated() {
+        this.addEventListener('keydown', (event) => {
+            if ((event.keyCode === 13) || (event.keyCode === 32)) {
+                event.preventDefault();
+                this.click();
+            }
+        });
+        this.setAttribute('role', 'button');
+        this.setAttribute('aria-label', this.textContent || this.innerText);
+        setTimeout(() => this.requestUpdate());
     }
-    this.tabIndex = this.disabled ? -1 : +(this.getAttribute('tabindex') || 0);
-  }
 
-  refreshElement(): void {
-    this.requestUpdate();
-  }
+    updated(changed: PropertyValues) {
+        if (changed.has('disabled')) {
+            this.refreshDisabledState();
+        }
+        const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
+        while (svg.hasChildNodes()) {
+            svg.removeChild(svg.lastChild!);
+        }
+        const s = this.getBoundingClientRect();
+        const elev = Math.min(Math.max(1, this.elevation), 5);
+        const w = s.width + ((elev - 1) * 2);
+        const h = s.height + ((elev - 1) * 2);
+        svg.setAttribute('width', `${w}`);
+        svg.setAttribute('height', `${h}`);
+        rectangle(svg, 0, 0, s.width, s.height);
+        for (let i = 1; i < elev; i++) {
+            (line(svg, (i * 2), s.height + (i * 2), s.width + (i * 2), s.height + (i * 2))).style.opacity = `${(75 - (i * 10)) / 100}`;
+            (line(svg, s.width + (i * 2), s.height + (i * 2), s.width + (i * 2), i * 2)).style.opacity = `${(75 - (i * 10)) / 100}`;
+            (line(svg, (i * 2), s.height + (i * 2), s.width + (i * 2), s.height + (i * 2))).style.opacity = `${(75 - (i * 10)) / 100}`;
+            (line(svg, s.width + (i * 2), s.height + (i * 2), s.width + (i * 2), i * 2)).style.opacity = `${(75 - (i * 10)) / 100}`;
+        }
+        this.classList.add('wired-rendered');
+    }
+
+    private refreshDisabledState() {
+        if (this.disabled) {
+            this.classList.add('wired-disabled');
+        } else {
+            this.classList.remove('wired-disabled');
+        }
+        this.tabIndex = this.disabled ? -1 : +(this.getAttribute('tabindex') || 0);
+    }
+
+    refreshElement(): void {
+        this.requestUpdate();
+    }
 }

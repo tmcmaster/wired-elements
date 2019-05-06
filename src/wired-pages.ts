@@ -1,4 +1,4 @@
-import { WiredBase, property, customElement, html, query, PropertyValues } from './wired-base';
+import {WiredBase, property, customElement, html, query, PropertyValues} from './wired-base';
 
 import '@polymer/iron-pages';
 import './wired-card';
@@ -6,7 +6,7 @@ import './wired-card';
 @customElement('wired-pages')
 export class WiredPages extends WiredBase {
 
-    @property({ type: String }) page = '';
+    @property({type: String}) page = '';
 
     @query('slot')
     private slotElement?: HTMLSlotElement;
@@ -14,12 +14,13 @@ export class WiredPages extends WiredBase {
     constructor() {
         super();
     }
+
     connectedCallback() {
         super.connectedCallback();
     }
 
     render() {
-        return html `
+        return html`
             <style>
                 :host { 
                     box-sizing: border-box;
@@ -38,6 +39,7 @@ export class WiredPages extends WiredBase {
             </iron-pages>
         `;
     }
+
     refreshElement(): void {
     }
 
@@ -72,12 +74,13 @@ export class WiredPage extends WiredBase {
     constructor() {
         super();
     }
+
     connectedCallback() {
         super.connectedCallback();
     }
 
     render() {
-        return html `
+        return html`
             <style>
                 :host { 
                     display: block;

@@ -1,25 +1,25 @@
-import { WiredBase, customElement, property, TemplateResult, html, css, CSSResult, PropertyValues } from './wired-base';
-import { rectangle } from './wired-lib';
+import {WiredBase, customElement, property, TemplateResult, html, css, CSSResult, PropertyValues} from './wired-base';
+import {rectangle} from './wired-lib';
 
 @customElement('wired-textarea')
 export class WiredTextarea extends WiredBase {
-  @property({ type: Number }) rows = 1;
-  @property({ type: Number }) maxrows = 0;
-  @property({ type: String }) autocomplete = '';
-  @property({ type: Boolean }) autofocus = false;
-  @property({ type: Boolean, reflect: true }) disabled = false;
-  @property({ type: String }) inputmode = '';
-  @property({ type: String }) placeholder = '';
-  @property({ type: Boolean }) required = false;
-  @property({ type: Boolean }) readonly = false;
-  @property({ type: Number }) minlength?: number;
-  @property({ type: Number }) maxlength?: number;
+    @property({type: Number}) rows = 1;
+    @property({type: Number}) maxrows = 0;
+    @property({type: String}) autocomplete = '';
+    @property({type: Boolean}) autofocus = false;
+    @property({type: Boolean, reflect: true}) disabled = false;
+    @property({type: String}) inputmode = '';
+    @property({type: String}) placeholder = '';
+    @property({type: Boolean}) required = false;
+    @property({type: Boolean}) readonly = false;
+    @property({type: Number}) minlength?: number;
+    @property({type: Number}) maxlength?: number;
 
-  private tokens: string[] = [];
-  private prevHeight = 0;
+    private tokens: string[] = [];
+    private prevHeight = 0;
 
-  static get styles(): CSSResult {
-    return css`
+    static get styles(): CSSResult {
+        return css`
     :host {
       display: inline-block;
       position: relative;
@@ -91,10 +91,10 @@ export class WiredTextarea extends WiredBase {
       box-sizing: border-box;
     }
     `;
-  }
+    }
 
-  render(): TemplateResult {
-    return html`
+    render(): TemplateResult {
+        return html`
     <div id="mirror" class="mirror-text">&#160;</div>
     <div class="fit">
       <textarea id="textarea" autocomplete="${this.autocomplete}" ?autofocus="${this.autofocus}" inputmode="${this.inputmode}"
@@ -105,104 +105,104 @@ export class WiredTextarea extends WiredBase {
       <svg id="svg"></svg>
     </div>
     `;
-  }
-
-  createRenderRoot() {
-    return this.attachShadow({ mode: 'open', delegatesFocus: true });
-  }
-
-  get textarea(): HTMLTextAreaElement | null {
-    if (this.shadowRoot) {
-      return this.shadowRoot.getElementById('textarea') as HTMLTextAreaElement;
     }
-    return null;
-  }
 
-  private get mirror(): HTMLDivElement {
-    return this.shadowRoot!.getElementById('mirror') as HTMLDivElement;
-  }
-
-  get value(): string {
-    const input = this.textarea;
-    return (input && input.value) || '';
-  }
-
-  set value(v: string) {
-    const textarea = this.textarea;
-    if (!textarea) {
-      return;
+    createRenderRoot() {
+        return this.attachShadow({mode: 'open', delegatesFocus: true});
     }
-    if (textarea.value !== v) {
-      textarea.value = v || '';
+
+    get textarea(): HTMLTextAreaElement | null {
+        if (this.shadowRoot) {
+            return this.shadowRoot.getElementById('textarea') as HTMLTextAreaElement;
+        }
+        return null;
     }
-    this.mirror.innerHTML = this.valueForMirror();
-    this.requestUpdate();
-  }
 
-  private valueForMirror(): string {
-    const input = this.textarea;
-    if (!input) {
-      return '';
+    private get mirror(): HTMLDivElement {
+        return this.shadowRoot!.getElementById('mirror') as HTMLDivElement;
     }
-    this.tokens = (input && input.value) ? input.value.replace(/&/gm, '&amp;').replace(/"/gm, '&quot;').replace(/'/gm, '&#39;').replace(/</gm, '&lt;').replace(/>/gm, '&gt;').split('\n') : [''];
-    return this.constrain(this.tokens);
-  }
 
-  private constrain(tokens: string[]) {
-    let _tokens: string[];
-    tokens = tokens || [''];
-    if (this.maxrows > 0 && tokens.length > this.maxrows) {
-      _tokens = tokens.slice(0, this.maxrows);
-    } else {
-      _tokens = tokens.slice(0);
+    get value(): string {
+        const input = this.textarea;
+        return (input && input.value) || '';
     }
-    while (this.rows > 0 && _tokens.length < this.rows) {
-      _tokens.push('');
+
+    set value(v: string) {
+        const textarea = this.textarea;
+        if (!textarea) {
+            return;
+        }
+        if (textarea.value !== v) {
+            textarea.value = v || '';
+        }
+        this.mirror.innerHTML = this.valueForMirror();
+        this.requestUpdate();
     }
-    return _tokens.join('<br/>') + '&#160;';
-  }
 
-  private refreshDisabledState() {
-    if (this.disabled) {
-      this.classList.add('wired-disabled');
-    } else {
-      this.classList.remove('wired-disabled');
+    private valueForMirror(): string {
+        const input = this.textarea;
+        if (!input) {
+            return '';
+        }
+        this.tokens = (input && input.value) ? input.value.replace(/&/gm, '&amp;').replace(/"/gm, '&quot;').replace(/'/gm, '&#39;').replace(/</gm, '&lt;').replace(/>/gm, '&gt;').split('\n') : [''];
+        return this.constrain(this.tokens);
     }
-  }
 
-  firstUpdated() {
-    this.value = this.value || this.getAttribute('value') || '';
-  }
-
-  updated(changed: PropertyValues) {
-    if (changed.has('disabled')) {
-      this.refreshDisabledState();
+    private constrain(tokens: string[]) {
+        let _tokens: string[];
+        tokens = tokens || [''];
+        if (this.maxrows > 0 && tokens.length > this.maxrows) {
+            _tokens = tokens.slice(0, this.maxrows);
+        } else {
+            _tokens = tokens.slice(0);
+        }
+        while (this.rows > 0 && _tokens.length < this.rows) {
+            _tokens.push('');
+        }
+        return _tokens.join('<br/>') + '&#160;';
     }
-    this.refreshElement();
-  }
 
-  private updateCached() {
-    this.mirror.innerHTML = this.constrain(this.tokens);
-  }
-
-  private onInput() {
-    this.value = this.textarea!.value;
-  }
-
-  refreshElement(): void {
-    const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
-    const s = this.getBoundingClientRect();
-
-    if (this.prevHeight !== s.height) {
-      while (svg.hasChildNodes()) {
-        svg.removeChild(svg.lastChild!);
-      }
-      svg.setAttribute('width', `${s.width}`);
-      svg.setAttribute('height', `${s.height}`);
-      rectangle(svg, 2, 2, s.width - 2, s.height - 2);
-      this.prevHeight = s.height;
-      this.classList.add('wired-rendered');
-      this.updateCached();
+    private refreshDisabledState() {
+        if (this.disabled) {
+            this.classList.add('wired-disabled');
+        } else {
+            this.classList.remove('wired-disabled');
+        }
     }
-  }
+
+    firstUpdated() {
+        this.value = this.value || this.getAttribute('value') || '';
+    }
+
+    updated(changed: PropertyValues) {
+        if (changed.has('disabled')) {
+            this.refreshDisabledState();
+        }
+        this.refreshElement();
+    }
+
+    private updateCached() {
+        this.mirror.innerHTML = this.constrain(this.tokens);
+    }
+
+    private onInput() {
+        this.value = this.textarea!.value;
+    }
+
+    refreshElement(): void {
+        const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
+        const s = this.getBoundingClientRect();
+
+        if (this.prevHeight !== s.height) {
+            while (svg.hasChildNodes()) {
+                svg.removeChild(svg.lastChild!);
+            }
+            svg.setAttribute('width', `${s.width}`);
+            svg.setAttribute('height', `${s.height}`);
+            rectangle(svg, 2, 2, s.width - 2, s.height - 2);
+            this.prevHeight = s.height;
+            this.classList.add('wired-rendered');
+            this.updateCached();
+        }
+    }
 }

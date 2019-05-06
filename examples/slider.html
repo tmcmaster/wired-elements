@@ -1,39 +1,39 @@
 <html>
 
 <head>
-  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-  <script type="module" src="../dist/wired-elements.js"></script>
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="module" src="../dist/wired-elements.js"></script>
 
-  <style>
-    body {
-      margin: 0;
-      padding: 10px;
-      font-family: sans-serif;
-      line-height: 1.5;
-    }
-  </style>
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+            font-family: sans-serif;
+            line-height: 1.5;
+        }
+    </style>
 </head>
 
 <body>
-  <wired-slider id="slider"></wired-slider>
-  <div id="label"></div>
-  <p>
+<wired-slider id="slider"></wired-slider>
+<div id="label"></div>
+<p>
     <wired-button id="btn">Reset</wired-button>
-  </p>
+</p>
 
-  <script>
+<script>
     const slider = document.getElementById('slider');
     const label = document.getElementById('label');
     slider.addEventListener('change', () => {
-      label.textContent = slider.value;
+        label.textContent = slider.value;
     });
     document.getElementById('btn').addEventListener('click', () => {
-      slider.value = 0;
-      label.textContent = slider.value;
+        slider.value = 0;
+        label.textContent = slider.value;
     });
-  </script>
+</script>
 
-  <wired-helper></wired-helper>
+<wired-helper></wired-helper>
 </body>
 
 </html>

@@ -1,15 +1,15 @@
-import { WiredBase, customElement, property, TemplateResult, html, css, CSSResult, PropertyValues } from './wired-base';
-import { rectangle, ellipse, hachureEllipseFill, svgNode } from './wired-lib';
+import {WiredBase, customElement, property, TemplateResult, html, css, CSSResult, PropertyValues} from './wired-base';
+import {rectangle, ellipse, hachureEllipseFill, svgNode} from './wired-lib';
 
 @customElement('wired-toggle')
 export class WiredToggle extends WiredBase {
-  @property({ type: Boolean }) checked = false;
-  @property({ type: Boolean, reflect: true }) disabled = false;
+    @property({type: Boolean}) checked = false;
+    @property({type: Boolean, reflect: true}) disabled = false;
 
-  private knob?: SVGElement;
+    private knob?: SVGElement;
 
-  static get styles(): CSSResult {
-    return css`
+    static get styles(): CSSResult {
+        return css`
     :host {
       display: inline-block;
       cursor: pointer;
@@ -66,78 +66,78 @@ export class WiredToggle extends WiredBase {
       stroke: var(--wired-toggle-on-color, rgb(63, 81, 181));
     }
     `;
-  }
+    }
 
-  render(): TemplateResult {
-    return html`
+    render(): TemplateResult {
+        return html`
     <div @click="${this.toggleCheck}">
       <svg id="svg"></svg>
     </div>
     `;
-  }
-
-  private refreshDisabledState() {
-    if (this.disabled) {
-      this.classList.add('wired-disabled');
-    } else {
-      this.classList.remove('wired-disabled');
-    }
-    this.tabIndex = this.disabled ? -1 : +(this.getAttribute('tabindex') || 0);
-  }
-
-  private toggleCheck() {
-    this.checked = !(this.checked || false);
-    this.fireEvent('change', { checked: this.checked });
-  }
-
-  firstUpdated() {
-    this.setAttribute('role', 'switch');
-    this.addEventListener('keydown', (event) => {
-      if ((event.keyCode === 13) || (event.keyCode === 32)) {
-        event.preventDefault();
-        this.toggleCheck();
-      }
-    });
-
-    const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
-    while (svg.hasChildNodes()) {
-      svg.removeChild(svg.lastChild!);
-    }
-    const s = { width: 80, height: 34 };
-    svg.setAttribute('width', `${s.width}`);
-    svg.setAttribute('height', `${s.height}`);
-    rectangle(svg, 16, 8, s.width - 32, 18);
-
-    this.knob = svgNode('g');
-    this.knob.classList.add('knob');
-    svg.appendChild(this.knob);
-
-    const knobFill = hachureEllipseFill(16, 16, 32, 32);
-    knobFill.classList.add('knobfill');
-    this.knob.appendChild(knobFill);
-    ellipse(this.knob, 16, 16, 32, 32);
-
-    this.classList.add('wired-rendered');
-  }
-
-  updated(changed: PropertyValues) {
-    if (changed.has('disabled')) {
-      this.refreshDisabledState();
     }
 
-    if (this.knob) {
-      const cl = this.knob.classList;
-      if (this.checked) {
-        cl.remove('unchecked');
-        cl.add('checked');
-      } else {
-        cl.remove('checked');
-        cl.add('unchecked');
-      }
+    private refreshDisabledState() {
+        if (this.disabled) {
+            this.classList.add('wired-disabled');
+        } else {
+            this.classList.remove('wired-disabled');
+        }
+        this.tabIndex = this.disabled ? -1 : +(this.getAttribute('tabindex') || 0);
     }
-    this.setAttribute('aria-checked', `${this.checked}`);
-  }
 
-  refreshElement(): void {
-  }
+    private toggleCheck() {
+        this.checked = !(this.checked || false);
+        this.fireEvent('change', {checked: this.checked});
+    }
+
+    firstUpdated() {
+        this.setAttribute('role', 'switch');
+        this.addEventListener('keydown', (event) => {
+            if ((event.keyCode === 13) || (event.keyCode === 32)) {
+                event.preventDefault();
+                this.toggleCheck();
+            }
+        });
+
+        const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
+        while (svg.hasChildNodes()) {
+            svg.removeChild(svg.lastChild!);
+        }
+        const s = {width: 80, height: 34};
+        svg.setAttribute('width', `${s.width}`);
+        svg.setAttribute('height', `${s.height}`);
+        rectangle(svg, 16, 8, s.width - 32, 18);
+
+        this.knob = svgNode('g');
+        this.knob.classList.add('knob');
+        svg.appendChild(this.knob);
+
+        const knobFill = hachureEllipseFill(16, 16, 32, 32);
+        knobFill.classList.add('knobfill');
+        this.knob.appendChild(knobFill);
+        ellipse(this.knob, 16, 16, 32, 32);
+
+        this.classList.add('wired-rendered');
+    }
+
+    updated(changed: PropertyValues) {
+        if (changed.has('disabled')) {
+            this.refreshDisabledState();
+        }
+
+        if (this.knob) {
+            const cl = this.knob.classList;
+            if (this.checked) {
+                cl.remove('unchecked');
+                cl.add('checked');
+            } else {
+                cl.remove('checked');
+                cl.add('unchecked');
+            }
+        }
+        this.setAttribute('aria-checked', `${this.checked}`);
+    }
+
+    refreshElement(): void {
+    }
 }

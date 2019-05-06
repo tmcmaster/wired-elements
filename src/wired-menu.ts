@@ -1,4 +1,4 @@
-import { WiredBase, customElement, html } from './wired-base';
+import {WiredBase, customElement, html} from './wired-base';
 
 import './wired-card';
 import {WiredItem} from './wired-item';
@@ -9,8 +9,9 @@ export class WiredMenu extends WiredBase {
         super();
         this.hide();
     }
+
     render() {
-        return html `
+        return html`
             <style>
                 :host { 
                     box-sizing: border-box;

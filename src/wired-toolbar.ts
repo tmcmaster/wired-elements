@@ -1,4 +1,4 @@
-import { WiredBase, customElement, html } from './wired-base';
+import {WiredBase, customElement, html} from './wired-base';
 
 import './wired-card';
 
@@ -6,7 +6,7 @@ import './wired-card';
 export class WiredToolbar extends WiredBase {
 
     render() {
-        return html `
+        return html`
             <style>
                 :host { 
                     display: inline-block;

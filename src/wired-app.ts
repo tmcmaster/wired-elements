@@ -1,4 +1,4 @@
-import { WiredBase, customElement, html } from './wired-base';
+import {WiredBase, customElement, html} from './wired-base';
 
 import './wired-pages';
 
@@ -6,7 +6,7 @@ import './wired-pages';
 export class WiredApp extends WiredBase {
 
     render() {
-        return html `
+        return html`
             <style>
                 :host { 
                     box-sizing: border-box;

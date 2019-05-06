@@ -1,11 +1,11 @@
-import { WiredBase, customElement, property, TemplateResult, html, query } from './wired-base';
-import { hachureFill } from './wired-lib';
+import {WiredBase, customElement, property, TemplateResult, html, query} from './wired-base';
+import {hachureFill} from './wired-lib';
 
 @customElement('wired-item')
 export class WiredItem extends WiredBase {
     @property() value = '';
     @property() name = '';
-    @property({ type: Boolean }) selected = false;
+    @property({type: Boolean}) selected = false;
 
     @query('svg')
     private svg?: SVGSVGElement;
@@ -99,15 +99,15 @@ export class WiredItem extends WiredBase {
         `;
     }
 
-  firstUpdated() {
-    if (this.selected) {
-      setTimeout(() => this.requestUpdate());
+    firstUpdated() {
+        if (this.selected) {
+            setTimeout(() => this.requestUpdate());
+        }
     }
-  }
 
-  updated() {
-    this.refreshElement();
-  }
+    updated() {
+        this.refreshElement();
+    }
 
 
     refreshElement(): void {

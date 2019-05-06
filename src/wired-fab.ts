@@ -1,13 +1,13 @@
-import { WiredBase, customElement, property, TemplateResult, html, css, CSSResult, PropertyValues } from './wired-base';
-import { hachureEllipseFill } from './wired-lib';
+import {WiredBase, customElement, property, TemplateResult, html, css, CSSResult, PropertyValues} from './wired-base';
+import {hachureEllipseFill} from './wired-lib';
 import '@material/mwc-icon';
 
 @customElement('wired-fab')
 export class WiredFab extends WiredBase {
-  @property({ type: Boolean, reflect: true }) disabled = false;
+    @property({type: Boolean, reflect: true}) disabled = false;
 
-  static get styles(): CSSResult {
-    return css`
+    static get styles(): CSSResult {
+        return css`
     :host {
       display: -ms-inline-flexbox;
       display: -webkit-inline-flex;
@@ -83,10 +83,10 @@ export class WiredFab extends WiredBase {
       opacity: 0.85;
     }
     `;
-  }
+    }
 
-  render(): TemplateResult {
-    return html`
+    render(): TemplateResult {
+        return html`
     <div class="overlay">
       <svg id="svg"></svg>
     </div>
@@ -94,48 +94,48 @@ export class WiredFab extends WiredBase {
       <slot></slot>
     </mwc-icon>
     `;
-  }
-
-  firstUpdated() {
-    this.addEventListener('keydown', (event) => {
-      if ((event.keyCode === 13) || (event.keyCode === 32)) {
-        event.preventDefault();
-        this.click();
-      }
-    });
-    this.setAttribute('role', 'button');
-    this.setAttribute('aria-label', this.textContent || this.innerText);
-    setTimeout(() => this.requestUpdate());
-  }
-
-  updated(changed: PropertyValues) {
-    if (changed.has('disabled')) {
-      this.refreshDisabledState();
     }
 
-    this.refreshElement();
-  }
-
-  private refreshDisabledState() {
-    if (this.disabled) {
-      this.classList.add('wired-disabled');
-    } else {
-      this.classList.remove('wired-disabled');
+    firstUpdated() {
+        this.addEventListener('keydown', (event) => {
+            if ((event.keyCode === 13) || (event.keyCode === 32)) {
+                event.preventDefault();
+                this.click();
+            }
+        });
+        this.setAttribute('role', 'button');
+        this.setAttribute('aria-label', this.textContent || this.innerText);
+        setTimeout(() => this.requestUpdate());
     }
-    this.tabIndex = this.disabled ? -1 : +(this.getAttribute('tabindex') || 0);
-  }
 
-  refreshElement(): void {
-    const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
-    while (svg.hasChildNodes()) {
-      svg.removeChild(svg.lastChild!);
+    updated(changed: PropertyValues) {
+        if (changed.has('disabled')) {
+            this.refreshDisabledState();
+        }
+
+        this.refreshElement();
     }
-    const s = this.getBoundingClientRect();
-    const min = Math.min(s.width, s.height);
-    svg.setAttribute('width', `${min}`);
-    svg.setAttribute('height', `${min}`);
-    const g = hachureEllipseFill(min / 2, min / 2, min, min);
-    svg.appendChild(g);
-    this.classList.add('wired-rendered');
-  }
+
+    private refreshDisabledState() {
+        if (this.disabled) {
+            this.classList.add('wired-disabled');
+        } else {
+            this.classList.remove('wired-disabled');
+        }
+        this.tabIndex = this.disabled ? -1 : +(this.getAttribute('tabindex') || 0);
+    }
+
+    refreshElement(): void {
+        const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
+        while (svg.hasChildNodes()) {
+            svg.removeChild(svg.lastChild!);
+        }
+        const s = this.getBoundingClientRect();
+        const min = Math.min(s.width, s.height);
+        svg.setAttribute('width', `${min}`);
+        svg.setAttribute('height', `${min}`);
+        const g = hachureEllipseFill(min / 2, min / 2, min, min);
+        svg.appendChild(g);
+        this.classList.add('wired-rendered');
+    }
 }

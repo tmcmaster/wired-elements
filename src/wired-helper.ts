@@ -26,7 +26,6 @@ export class WiredHelper extends LitElement {
     }
 
 
-
     private dispatchRefreshEvent() {
         if (this.debug) console.log('Resize has occurred, and element refresh is required.');
         fireEvent('refresh-element');

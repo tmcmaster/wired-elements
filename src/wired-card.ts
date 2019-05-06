@@ -1,13 +1,13 @@
-import { WiredBase, customElement, property, TemplateResult, html } from './wired-base';
-import { rectangle, line } from './wired-lib';
+import {WiredBase, customElement, property, TemplateResult, html} from './wired-base';
+import {rectangle, line} from './wired-lib';
 
 @customElement('wired-card')
 export class WiredCard extends WiredBase {
-  @property({ type: Number }) elevation = 1;
-  @property({ type: Number }) padding = 10;
+    @property({type: Number}) elevation = 1;
+    @property({type: Number}) padding = 10;
 
-  render(): TemplateResult {
-      return html`
+    render(): TemplateResult {
+        return html`
             <style>
                 :host {
                     display: inline-block;
@@ -75,47 +75,47 @@ export class WiredCard extends WiredBase {
                 <svg id="svg"></svg>
             </div>
         `;
-  }
-
-  slotChanged() {
-    if (this.debug) console.log('slot changed');
-    super.requestUpdate();
-  }
-
-
-  updated() {
-    this.refreshElement();
-  }
-
-  refreshElement(): void {
-    const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
-    while (svg.hasChildNodes()) {
-      svg.removeChild(svg.lastChild!);
     }
 
-    // margin enables the lines to wobble, and not try to write outside the SVG element. (happens with large cards)
-    const s = this.getBoundingClientRect();
-    //console.log('CARD RESIZE: ', s);
-    this.padding = ( s.width + s.height) / 100;
-    const margin = this.padding;
-    const margins = 2 * margin;
-    const elevInc = margin;
-    const width = s.width - margins;
-    const height = s.height - margins;
-
-    const elev = Math.min(Math.max(1, this.elevation), 5);
-    const w = width + ((elev - 1) * elevInc) + margins;
-    const h = height + ((elev - 1) * elevInc) + margins;
-    svg.setAttribute('width', `${w}`);
-    svg.setAttribute('height', `${h}`);
-
-    rectangle(svg, margin, margin, width, height);
-    for (let i = 1; i < elev; i++) {
-      (line(svg, (i * elevInc), height + (i * elevInc), width + (i * elevInc), height + (i * elevInc))).style.opacity = `${(85 - (i * 10)) / 100}`;
-      (line(svg, width + (i * elevInc), height + (i * elevInc), width + (i * elevInc), i * elevInc)).style.opacity = `${(85 - (i * 10)) / 100}`;
-      (line(svg, (i * elevInc), height + (i * elevInc), width + (i * elevInc), height + (i * elevInc))).style.opacity = `${(85 - (i * 10)) / 100}`;
-      (line(svg, width + (i * elevInc), height + (i * elevInc), width + (i * elevInc), i * elevInc)).style.opacity = `${(85 - (i * 10)) / 100}`;
+    slotChanged() {
+        if (this.debug) console.log('slot changed');
+        super.requestUpdate();
     }
-    this.classList.add('wired-rendered');
-  }
+
+
+    updated() {
+        this.refreshElement();
+    }
+
+    refreshElement(): void {
+        const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
+        while (svg.hasChildNodes()) {
+            svg.removeChild(svg.lastChild!);
+        }
+
+        // margin enables the lines to wobble, and not try to write outside the SVG element. (happens with large cards)
+        const s = this.getBoundingClientRect();
+        //console.log('CARD RESIZE: ', s);
+        this.padding = (s.width + s.height) / 100;
+        const margin = this.padding;
+        const margins = 2 * margin;
+        const elevInc = margin;
+        const width = s.width - margins;
+        const height = s.height - margins;
+
+        const elev = Math.min(Math.max(1, this.elevation), 5);
+        const w = width + ((elev - 1) * elevInc) + margins;
+        const h = height + ((elev - 1) * elevInc) + margins;
+        svg.setAttribute('width', `${w}`);
+        svg.setAttribute('height', `${h}`);
+
+        rectangle(svg, margin, margin, width, height);
+        for (let i = 1; i < elev; i++) {
+            (line(svg, (i * elevInc), height + (i * elevInc), width + (i * elevInc), height + (i * elevInc))).style.opacity = `${(85 - (i * 10)) / 100}`;
+            (line(svg, width + (i * elevInc), height + (i * elevInc), width + (i * elevInc), i * elevInc)).style.opacity = `${(85 - (i * 10)) / 100}`;
+            (line(svg, (i * elevInc), height + (i * elevInc), width + (i * elevInc), height + (i * elevInc))).style.opacity = `${(85 - (i * 10)) / 100}`;
+            (line(svg, width + (i * elevInc), height + (i * elevInc), width + (i * elevInc), i * elevInc)).style.opacity = `${(85 - (i * 10)) / 100}`;
+        }
+        this.classList.add('wired-rendered');
+    }
 }

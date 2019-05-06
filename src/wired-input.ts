@@ -1,24 +1,24 @@
-import { WiredBase, customElement, property, TemplateResult, html, PropertyValues } from './wired-base';
-import { rectangle } from './wired-lib';
+import {WiredBase, customElement, property, TemplateResult, html, PropertyValues} from './wired-base';
+import {rectangle} from './wired-lib';
 
 @customElement('wired-input')
 export class WiredInput extends WiredBase {
-    @property({ type: String }) placeholder = '';
-    @property({ type: String }) name?: string;
-    @property({ type: String }) min?: string;
-    @property({ type: String }) max?: string;
-    @property({ type: String }) step?: string;
-    @property({ type: String }) type = 'text';
-    @property({ type: String }) autocomplete = '';
-    @property({ type: String }) autocapitalize = '';
-    @property({ type: String }) autocorrect = '';
-    @property({ type: Boolean, reflect: true }) disabled = false;
-    @property({ type: Boolean }) required = false;
-    @property({ type: Boolean }) autofocus = false;
-    @property({ type: Boolean }) readonly = false;
-    @property({ type: Number }) minlength?: number;
-    @property({ type: Number }) maxlength?: number;
-    @property({ type: Number }) size?: number;
+    @property({type: String}) placeholder = '';
+    @property({type: String}) name?: string;
+    @property({type: String}) min?: string;
+    @property({type: String}) max?: string;
+    @property({type: String}) step?: string;
+    @property({type: String}) type = 'text';
+    @property({type: String}) autocomplete = '';
+    @property({type: String}) autocapitalize = '';
+    @property({type: String}) autocorrect = '';
+    @property({type: Boolean, reflect: true}) disabled = false;
+    @property({type: Boolean}) required = false;
+    @property({type: Boolean}) autofocus = false;
+    @property({type: Boolean}) readonly = false;
+    @property({type: Number}) minlength?: number;
+    @property({type: Number}) maxlength?: number;
+    @property({type: Number}) size?: number;
 
     private pendingValue?: string;
     private resizeHandler?: EventListenerOrEventListenerObject;
@@ -58,6 +58,7 @@ export class WiredInput extends WiredBase {
             }
         };
     }
+
     render(): TemplateResult {
         return html`
             <style>
@@ -127,76 +128,76 @@ export class WiredInput extends WiredBase {
         `;
     }
 
-  createRenderRoot() {
-    return this.attachShadow({ mode: 'open', delegatesFocus: true });
-  }
-
-  get input(): HTMLInputElement | null {
-    if (this.shadowRoot) {
-      return this.shadowRoot.getElementById('txt') as HTMLInputElement;
+    createRenderRoot() {
+        return this.attachShadow({mode: 'open', delegatesFocus: true});
     }
-    return null;
-  }
 
-  get value(): string {
-    const input = this.input;
-    return (input && input.value) || '';
-  }
-
-  set value(v: string) {
-    if (this.shadowRoot) {
-      const input = this.input;
-      if (input) {
-        input.value = v;
-      }
-    } else {
-      this.pendingValue = v;
+    get input(): HTMLInputElement | null {
+        if (this.shadowRoot) {
+            return this.shadowRoot.getElementById('txt') as HTMLInputElement;
+        }
+        return null;
     }
-  }
 
-  firstUpdated() {
-    this.value = this.value || this.getAttribute('value') || '';
-  }
-
-  updated(changed: PropertyValues) {
-      if (changed.has('disabled')) {
-          this.refreshDisabledState();
-      }
-      this.refreshElement();
-  }
-
-  refreshElement(): void {
-    const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
-    while (svg.hasChildNodes()) {
-      svg.removeChild(svg.lastChild!);
+    get value(): string {
+        const input = this.input;
+        return (input && input.value) || '';
     }
-    const s = this.getBoundingClientRect();
-    const elev = 1;
-    const margin = 2;
-    const margins = margin * 2;
-    const height = s.height - margins - elev;
-    const width = s.width - margins - elev;
-    svg.setAttribute('width', `${s.width + margins}`);
-    svg.setAttribute('height', `${s.height + margins}`);
-    rectangle(svg, margin, margin, width, height);
-    if (typeof this.pendingValue !== 'undefined') {
-      this.input!.value = this.pendingValue;
-      delete this.pendingValue;
-    }
-    this.classList.add('wired-rendered');
-  }
 
-  private refreshDisabledState() {
-    if (this.disabled) {
-      this.classList.add('wired-disabled');
-    } else {
-      this.classList.remove('wired-disabled');
+    set value(v: string) {
+        if (this.shadowRoot) {
+            const input = this.input;
+            if (input) {
+                input.value = v;
+            }
+        } else {
+            this.pendingValue = v;
+        }
     }
-  }
 
-  private onChange(event: Event) {
-    event.stopPropagation();
-    this.fireEvent(event.type, { sourceEvent: event });
-  }
+    firstUpdated() {
+        this.value = this.value || this.getAttribute('value') || '';
+    }
+
+    updated(changed: PropertyValues) {
+        if (changed.has('disabled')) {
+            this.refreshDisabledState();
+        }
+        this.refreshElement();
+    }
+
+    refreshElement(): void {
+        const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
+        while (svg.hasChildNodes()) {
+            svg.removeChild(svg.lastChild!);
+        }
+        const s = this.getBoundingClientRect();
+        const elev = 1;
+        const margin = 2;
+        const margins = margin * 2;
+        const height = s.height - margins - elev;
+        const width = s.width - margins - elev;
+        svg.setAttribute('width', `${s.width + margins}`);
+        svg.setAttribute('height', `${s.height + margins}`);
+        rectangle(svg, margin, margin, width, height);
+        if (typeof this.pendingValue !== 'undefined') {
+            this.input!.value = this.pendingValue;
+            delete this.pendingValue;
+        }
+        this.classList.add('wired-rendered');
+    }
+
+    private refreshDisabledState() {
+        if (this.disabled) {
+            this.classList.add('wired-disabled');
+        } else {
+            this.classList.remove('wired-disabled');
+        }
+    }
+
+    private onChange(event: Event) {
+        event.stopPropagation();
+        this.fireEvent(event.type, {sourceEvent: event});
+    }
 
 }

@@ -1,4 +1,4 @@
-import { WiredBase, customElement, property,  html } from './wired-base';
+import {WiredBase, customElement, property, html} from './wired-base';
 
 import '@polymer/app-layout';
 import './wired-card';
@@ -10,7 +10,7 @@ export class WiredDrawer extends WiredBase {
 
     private drawer?: AppDrawerElement;
 
-    @property({ type: String }) align = 'left';
+    @property({type: String}) align = 'left';
 
     constructor() {
         super();
@@ -51,7 +51,7 @@ export class WiredDrawer extends WiredBase {
     }
 
     render() {
-        return html `
+        return html`
             <style>
                 :host { 
                     box-sizing: border-box;
@@ -81,7 +81,7 @@ export class WiredDrawer extends WiredBase {
             </app-drawer>
         `;
     }
-    
+
     refreshElement(): void {
     }
 }
