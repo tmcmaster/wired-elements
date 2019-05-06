@@ -84,21 +84,14 @@ export class WizardTabs extends WiredBase {
                 :host ::slotted(.hidden) {
                   display: none !important;
                 }
-            
-                #bar {
-                  display: -ms-flexbox;
-                  display: -webkit-flex;
-                  display: flex;
-                  -ms-flex-direction: row;
-                  -webkit-flex-direction: row;
-                  flex-direction: row;
-                }
                 
                 #bar, #tabs { 
                     width: 100%;
                 } 
                 #bar {
-                  margin-left: 15px;
+                    display: inline-block;
+                  padding-left: 25px;
+                  padding-right: 25px;
                 }
                 #tabs {
                  height: 100%;

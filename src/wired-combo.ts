@@ -171,28 +171,8 @@ export class WiredCombo extends WiredBase {
     if (changed.has('disabled')) {
       this.refreshDisabledState();
     }
-    const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
-    while (svg.hasChildNodes()) {
-      svg.removeChild(svg.lastChild!);
-    }
-    const s = this.shadowRoot!.getElementById('container')!.getBoundingClientRect();
-    svg.setAttribute('width', `${s.width}`);
-    svg.setAttribute('height', `${s.height}`);
-    const textBounds = this.shadowRoot!.getElementById('textPanel')!.getBoundingClientRect();
-    this.shadowRoot!.getElementById('dropPanel')!.style.minHeight = textBounds.height + 'px';
-    rectangle(svg, 0, 0, textBounds.width, textBounds.height);
-    const dropx = textBounds.width - 4;
-    rectangle(svg, dropx, 0, 34, textBounds.height);
-    const dropOffset = Math.max(0, Math.abs((textBounds.height - 24) / 2));
-    const poly = polygon(svg, [
-      [dropx + 8, 5 + dropOffset],
-      [dropx + 26, 5 + dropOffset],
-      [dropx + 17, dropOffset + Math.min(textBounds.height, 18)]
-    ]);
-    poly.style.fill = 'currentColor';
-    poly.style.pointerEvents = this.disabled ? 'none' : 'auto';
-    poly.style.cursor = 'pointer';
-    this.classList.add('wired-rendered');
+
+    this.refreshElement();
 
     // aria
     this.setAttribute('aria-expanded', `${this.cardShowing}`);
@@ -333,5 +313,27 @@ export class WiredCombo extends WiredBase {
   }
 
   refreshElement(): void {
+    const svg = (this.shadowRoot!.getElementById('svg') as any) as SVGSVGElement;
+    while (svg.hasChildNodes()) {
+      svg.removeChild(svg.lastChild!);
+    }
+    const s = this.shadowRoot!.getElementById('container')!.getBoundingClientRect();
+    svg.setAttribute('width', `${s.width}`);
+    svg.setAttribute('height', `${s.height}`);
+    const textBounds = this.shadowRoot!.getElementById('textPanel')!.getBoundingClientRect();
+    this.shadowRoot!.getElementById('dropPanel')!.style.minHeight = textBounds.height + 'px';
+    rectangle(svg, 0, 0, textBounds.width, textBounds.height);
+    const dropx = textBounds.width - 4;
+    rectangle(svg, dropx, 0, 34, textBounds.height);
+    const dropOffset = Math.max(0, Math.abs((textBounds.height - 24) / 2));
+    const poly = polygon(svg, [
+      [dropx + 8, 5 + dropOffset],
+      [dropx + 26, 5 + dropOffset],
+      [dropx + 17, dropOffset + Math.min(textBounds.height, 18)]
+    ]);
+    poly.style.fill = 'currentColor';
+    poly.style.pointerEvents = this.disabled ? 'none' : 'auto';
+    poly.style.cursor = 'pointer';
+    this.classList.add('wired-rendered');
   }
 }
