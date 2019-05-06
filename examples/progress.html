@@ -42,33 +42,33 @@
 <section style="margin-top: 40px;">
     <wired-progress id="progress"></wired-progress>
     <div style="margin-top: 16px;">
-        <wired-button id="btns">Start</wired-button>
-        <wired-button id="btnr">Reset</wired-button>
+        <wired-button id="start">Start</wired-button>
+        <wired-button id="reset">Reset</wired-button>
     </div>
 </section>
 
 <wired-helper></wired-helper>
 <script>
-    const prog = document.getElementById('progress');
+    const progress = document.getElementById('progress');
     let timer = 0;
-    document.getElementById('btns').addEventListener('click', () => {
+    document.getElementById('start').addEventListener('click', () => {
         if (timer) {
             window.clearInterval(timer);
         }
         timer = window.setInterval(() => {
-            if (prog.value >= 100) {
-                prog.value = 0;
+            if (progress.value >= 100) {
+                progress.value = 0;
             } else {
-                prog.value = prog.value + 1;
+                progress.value = progress.value + 1;
             }
         }, 100);
     });
-    document.getElementById('btnr').addEventListener('click', () => {
+    document.getElementById('reset').addEventListener('click', () => {
         if (timer) {
             window.clearInterval(timer);
             timer = 0;
         }
-        prog.value = 0;
+        progress.value = 0;
     });
 </script>
 </body>
