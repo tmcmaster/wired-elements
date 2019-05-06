@@ -1,5 +1,7 @@
 import {LitElement, property} from 'lit-element';
 
+import {fireEventTo} from './wired-lib';
+
 export * from 'lit-element';
 
 export abstract class WiredBase extends LitElement {
@@ -8,17 +10,7 @@ export abstract class WiredBase extends LitElement {
     private refreshListener?: EventListenerOrEventListenerObject;
 
     fireEvent(name: string, detail?: any, bubbles: boolean = true, composed: boolean = true) {
-        if (name) {
-            const init: any = {
-                bubbles: (typeof bubbles === 'boolean') ? bubbles : true,
-                composed: (typeof composed === 'boolean') ? composed : true
-            };
-            if (detail) {
-                init.detail = detail;
-            }
-            const CE = ((window as any).SlickCustomEvent || CustomEvent);
-            this.dispatchEvent(new CE(name, init));
-        }
+        fireEventTo(this, name, detail, bubbles, composed);
     }
 
     connectedCallback() {
