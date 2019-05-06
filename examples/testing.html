@@ -10,110 +10,11 @@
     <script type="module" src="../dist/wired-elements.js"></script>
 
     <style>
-        svg {
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
-            border: solid red 1px;
-        }
 
-        rect {
-            box-sizing: border-box;
-        }
-
-        path {
-            width: 100%;
-            height: 100%;
-        / / transform: scale(2, 2)
-        }
-
-        #g {
-            border: solid red 1px;
-        }
     </style>
 
 </head>
-<!--viewBox="10 10 100% 100%"-->
-<!--viewBox="0 0 200 200"-->
 <body>
-<!--  <svg width="100%" height="100%">-->
-
-<!--    <defs>-->
-<!--      <pattern id="Pattern" x="0" y="0" width="10" height="10">-->
-<!--        <rect fill="gray"  x="0" y="0" width="500" height="500"/>-->
-<!--        <path id="testPath" d = "M 000 00 L 50 100 L 100 0"  stroke-width = "5" stroke="orange"  />-->
-<!--      </pattern>-->
-
-<!--      <pattern id="Pattern" x="0" y="0" width="10" height="10">-->
-<!--        <rect fill="gray"  x="0" y="0" width="500" height="500"/>-->
-<!--        <path id="testPath" d = "M 000 00 L 50 100 L 100 0"  stroke-width = "5" stroke="orange"  />-->
-<!--      </pattern>-->
-<!--    </defs>-->
-
-<!--    <rect preserveAspectRatio="none" vector-effect="non-scaling-stroke" x="50" y="50" width="80%" height="80%"-->
-<!--        stroke="url(#Pattern)" fill="none" stroke-width="1"/>-->
-
-<!--&lt;!&ndash;    <rect vector-effect="non-scaling-stroke" x="10" y="10" width="30%" height="30%"&ndash;&gt;-->
-<!--&lt;!&ndash;        stroke="blue" fill="none" stroke-width="1"&ndash;&gt;-->
-<!--&lt;!&ndash;        transform="rotate(30) scale(3,1)"/>&ndash;&gt;-->
-
-<!--&lt;!&ndash;    <rect vector-effect="non-scaling-stroke" x="10" y="10" width="30%" height="30%"&ndash;&gt;-->
-<!--&lt;!&ndash;          stroke="blue" fill="none" stroke-width="1" preserveAspectRatio="none"/>&ndash;&gt;-->
-
-
-<!--&lt;!&ndash;    <path preserveAspectRatio="xMidYMid meet" vector-effect="non-scaling-stroke" stroke="black" fill="none" stroke-width="1" d="M 2.816907476550652 5.704933248302883 C 30.938390674885724 2.697508911430293, 56.215552724172476 2.71536927422608, 95.7738820074493 2.436472506830163 M 3.7775595280664493 4.873428009117467 C 31.374221392643076 3.1463995511481357, 57.66724988980396 3.7737595383846045, 96.63022947892743 3.949639102331237 M 94.31041548418398 4.049676695909276 C 95.10928569317005 38.37209725508281, 95.19451074495208 72.07030262066247, 96.13608807979087 95.28247948281425 M 96.64230419005214 3.829905012714124 C 95.7105838518165 38.05732767516925, 95.45975839834767 70.83048192742068, 95.07570364721136 95.39178740628203 M 97.26113939155368 95.08895886430915 C 75.83397348655811 95.00686007408963, 54.50857202560731 96.86302682203691, 3.168726983806974 95.13512539904866 M 95.52291065503671 96.07143128238371 C 75.06115098847856 97.5026094631072, 53.0791462145915 97.3850316393337, 4.860424882532855 95.90208159533793 M 2.9144419895360913 96.62190790049307 C 3.365866573513088 60.05276576176507, 4.341525688552941 23.011507959091496, 2.687514917549854 5.838266766381376 M 4.8949022695099345 95.84764323694095 C 4.632218446788581 59.77471438505769, 5.218520311051875 24.74316772321981, 3.6962938067098836 3.442074554199216"></path>&ndash;&gt;-->
-
-
-<!--&lt;!&ndash;    <path d="M100,200&ndash;&gt;-->
-<!--&lt;!&ndash;           C100,100  400,100  400,200"&ndash;&gt;-->
-<!--&lt;!&ndash;          fill="none" stroke="#000" stroke-width="2px" />&ndash;&gt;-->
-
-<!--  </svg>-->
-
-<svg>
-    <defs>
-        <pattern id="pattern3" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-            <line z-index="10" x1="1" y1="1" x2="15" y2="15" stroke="red" stroke-width="2px"></line>
-            <circle cx="10" cy="10" r="10" stroke="blue" fill="none"></circle>
-        </pattern>
-        <pattern id="pattern1" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-            <circle cx="10" cy="10" r="10" stroke="none" fill="#393"></circle>
-        </pattern>
-        <pattern id="pattern2" x="0" y="5" width="750" height="15" patternUnits="userSpaceOnUse">
-            <path d="M0,5 Q200,15 350,5 T750 5"
-                  fill="none" stroke="#000" stroke-width="2px"></path>
-        </pattern>
-    </defs>
-
-    <rect x="10" y="10" width="40%" height="40%" stroke="url(#pattern3)" stroke-width="20px" fill="white"></rect>
-
-    <!--    <path transform="translate(30,200)" d="M10,20 C10,10  40,10  40,20" fill="none" stroke="#000" stroke-width="2px" />-->
-
-    <!--    <path d="M100,200-->
-    <!--           Q250,100 400,200-->
-    <!--           T600 200"-->
-    <!--          fill="none" stroke="#000" stroke-width="2px" />-->
-
-    <g transform="translate(50,100)">
-        <rect x="0" y="0" width="750" height="10" stroke-width="1px" stroke="red" fill="white"></rect>
-        <path d="M0,5 Q200,15 350,5 T750 5" fill="none" stroke="#000" stroke-width="2px"></path>
-    </g>
-
-    <!--      <path d="M50,100 Q250,110 400,100 T800 100"-->
-    <!--          fill="none" stroke="#000" stroke-width="2px" />-->
-
-    <g id="g" transform="translate(50,300)">
-        <path d="M100,100 Q250,110 400,100 T800 100"
-              fill="none" stroke="#000" stroke-width="2px"></path>
-    </g>
-
-    <!--    <path transform="translate(700,200)"-->
-    <!--          d="M100,100 Q250,110 400,100 T800 100"-->
-    <!--          fill="none" stroke="#000" stroke-width="2px" />-->
-
-
-    <!--    <path d="M100,250 C100,100 400,100 400,250 S400,400 250,250" />-->
-</svg>
 
 </body>
 
