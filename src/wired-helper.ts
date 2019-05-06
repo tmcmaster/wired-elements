@@ -2,6 +2,8 @@ import {LitElement, html, customElement, TemplateResult, property} from 'lit-ele
 
 import './wired-button';
 
+import {fireWindowEvent} from './wired-lib';
+
 @customElement('wired-helper')
 export class WiredHelper extends LitElement {
     @property({type: Boolean}) debug = false;
@@ -25,10 +27,9 @@ export class WiredHelper extends LitElement {
         }
     }
 
-
     private dispatchRefreshEvent() {
         if (this.debug) console.log('Resize has occurred, and element refresh is required.');
-        fireEvent('refresh-element');
+        fireWindowEvent('refresh-element');
     }
 
     render(): TemplateResult {
@@ -37,17 +38,23 @@ export class WiredHelper extends LitElement {
                 :host {
                     box-sizing: border-box;
                     display: block;
+                    padding: 15px;
                 }
                 :host([hidden]) { display: none; }
-
+                
+                button {
+                    clear: both;
+                    float: left;
+                    border: solid lightgrey 1px;
+                }
             </style>
-            ${this.debug ? html`<wired-button @click="${() => this.refresh()}">Refresh</wired-button>` : ''}
+            ${this.debug ? html`<button @click="${() => this.refresh()}">Refresh</button>` : ''}
         `;
     }
 
     refresh() {
         if (this.debug) console.log('refreshing element render');
-        fireEvent('refresh-element');
+        fireWindowEvent('refresh-element');
     }
 
     refreshElement(): void {
@@ -55,35 +62,3 @@ export class WiredHelper extends LitElement {
 }
 
 
-export function fireEvent(name: string, detail?: any, bubbles: boolean = true, composed: boolean = true) {
-    if (name) {
-        const init: any = {
-            bubbles: (typeof bubbles === 'boolean') ? bubbles : true,
-            composed: (typeof composed === 'boolean') ? composed : true
-        };
-        if (detail) {
-            init.detail = detail;
-        }
-        const CE = ((window as any).SlickCustomEvent || CustomEvent);
-        window.dispatchEvent(new CE(name, init));
-    }
-}
-
-export function delayCall(func: Function, wait: number, immediate: boolean, context: HTMLElement): EventListenerOrEventListenerObject {
-    let timeout = 0;
-    return () => {
-        const args = arguments;
-        const later = () => {
-            timeout = 0;
-            if (!immediate) {
-                func.apply(context, args);
-            }
-        };
-        const callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = window.setTimeout(later, wait);
-        if (callNow) {
-            func.apply(context, args);
-        }
-    };
-}

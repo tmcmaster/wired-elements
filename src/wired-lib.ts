@@ -300,3 +300,40 @@ export function setupOnloadRefresh() {
         }, 1000);
     };
 }
+
+export function fireWindowEvent(name: string, detail?: any, bubbles: boolean = true, composed: boolean = true) {
+    fireEventTo(window, name, detail, bubbles, composed);
+}
+
+export function fireEventTo(destination: EventTarget, name: string, detail?: any, bubbles: boolean = true, composed: boolean = true) {
+    if (destination && name) {
+        const init: any = {
+            bubbles: (typeof bubbles === 'boolean') ? bubbles : true,
+            composed: (typeof composed === 'boolean') ? composed : true
+        };
+        if (detail) {
+            init.detail = detail;
+        }
+        const CE = ((window as any).SlickCustomEvent || CustomEvent);
+        destination.dispatchEvent(new CE(name, init));
+    }
+}
+
+export function delayCall(func: Function, wait: number, immediate: boolean, context: HTMLElement): EventListenerOrEventListenerObject {
+    let timeout = 0;
+    return () => {
+        const args = arguments;
+        const later = () => {
+            timeout = 0;
+            if (!immediate) {
+                func.apply(context, args);
+            }
+        };
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = window.setTimeout(later, wait);
+        if (callNow) {
+            func.apply(context, args);
+        }
+    };
+}
