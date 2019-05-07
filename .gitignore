@@ -9,5 +9,4 @@ hold
 junk
 .idea
 src
-lib/*.ts
 lib/wired-elements.js
