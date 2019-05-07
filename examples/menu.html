@@ -1,0 +1,81 @@
+<html lang="en">
+
+<head>
+    <title>wired-menu</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
+
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="module" src="../dist/wired-elements.js"></script>
+
+    <style>
+
+        /*wired-item {*/
+        /*  --wired-item-selected-bg: black;*/
+        /*  --wired-item-hover-bg: blue;*/
+        /*}*/
+
+        body {
+            position: relative;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        /*wired-item {*/
+        /*  clear: both;*/
+        /*  float: left;*/
+        /*}*/
+        div {
+            box-sizing: border-box;
+            border: solid red 2px;
+            position: relative;
+            left: 200px;
+            top: 200px;
+            width: 400px;
+            height: 400px;
+        }
+
+        wired-menu {
+            top: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body onkeypress="showMenu(event)">
+
+<div>
+    <wired-menu id="menu" class="ne">
+        <wired-item role="option" value="one">Number One</wired-item>
+        <wired-item role="option" value="two">Two</wired-item>
+        <wired-item role="option" value="three">Number Three</wired-item>
+    </wired-menu>
+</div>
+<wired-helper></wired-helper>
+<!--  <wired-listbox id="combo" selected="two">-->
+<!--    <wired-item value="one">Number One</wired-item>-->
+<!--    <wired-item value="two">Number Two</wired-item>-->
+<!--    <wired-item value="three">Number Three</wired-item>-->
+<!--  </wired-listbox>-->
+
+
+<script>
+    const menu = document.getElementById('menu');
+    menu.addEventListener('selected', (e) => {
+        console.log('SELECTED: ', e)
+    });
+
+    function showMenu(e) {
+        console.log('KEY: ', e);
+        if (e.charCode === 13 && e.ctrlKey) {
+            console.log('opening menu');
+            menu.show();
+        }
+    }
+
+</script>
+</body>
+
+</html>

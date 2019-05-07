@@ -1,0 +1,127 @@
+<html lang="en">
+
+<head>
+    <title>wired-card</title>
+
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="module" src="../dist/wired-elements.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+            font-family: sans-serif;
+            line-height: 1.5;
+        }
+
+        /*wired-card {*/
+        /*  max-width: 100%;*/
+        /*  padding: 25px;*/
+        /*}*/
+
+        .card-grid {
+            display: grid;
+            gap: 30px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .full {
+            margin-top: 50px;
+            box-sizing: border-box;
+            width: 100%;
+        / / height: 500 px;
+        }
+
+        .inner {
+            width: 100px;
+            height: 100px;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+
+        h4 {
+            margin-top: 0;
+        }
+
+        wired-card.test {
+        / / border: solid red 1 px;
+        }
+
+        div.test {
+            box-sizing: border-box;
+            margin: 2px;
+            width: 95vw;
+            height: 200px;
+        / / border: solid blue 1 px;
+        }
+
+    </style>
+</head>
+
+<body>
+<wired-helper></wired-helper>
+<wired-card class="test">
+    There is a theory which states that if ever anyone discovers exactly what the Universe is for and why it is here,
+    it will instantly disappear and be replaced by something even more bizarre and inexplicable.
+    There is another theory which states that this has already happened. Douglas Adams
+</wired-card>
+
+<hr/>
+
+<wired-card>Small</wired-card>
+
+<div class="card-grid">
+    <wired-card>
+        <h4>Card 1</h4>
+        <p>
+            There is a theory which states that if ever anyone discovers exactly what the Universe is for and why it is here,
+            it will instantly disappear and be replaced by something even more bizarre and inexplicable.
+            There is another theory which states that this has already happened. Douglas Adams
+        </p>
+    </wired-card>
+    <wired-card elevation="3">
+        <h4>Card 2</h4>
+        <p>
+            There is a theory which states that if ever anyone discovers exactly what the Universe is for and why it is here,
+            it will instantly disappear and be replaced by something even more bizarre and inexplicable.
+            There is another theory which states that this has already happened. Douglas Adams
+        </p>
+    </wired-card>
+    <wired-card>
+        <h4>Card 3</h4>
+        <p>
+            There is a theory which states that if ever anyone discovers exactly what the Universe is for and why it is here,
+            it will instantly disappear and be replaced by something even more bizarre and inexplicable.
+            There is another theory which states that this has already happened. Douglas Adams
+        </p>
+    </wired-card>
+
+</div>
+
+<wired-card id="bb" class="full">
+    <h4>Card 4</h4>
+    <p>
+        There is a theory which states that if ever anyone discovers exactly what the Universe is for and why it is here,
+        it will instantly disappear and be replaced by something even more bizarre and inexplicable.
+        There is another theory which states that this has already happened. Douglas Adams
+    </p>
+    <wired-card class="inner">One</wired-card>
+    <wired-card class="inner">Two</wired-card>
+    <wired-card id="aa" class="three">
+        <wired-card class="inner">Three</wired-card>
+        <wired-card class="inner">Four</wired-card>
+        <wired-card class="inner">Three</wired-card>
+        <wired-card class="inner">Four</wired-card>
+        <wired-card class="inner">Three</wired-card>
+        <wired-card class="inner">Four</wired-card>
+        <wired-card class="inner">Three</wired-card>
+        <wired-card class="inner">Four</wired-card>
+    </wired-card>
+</wired-card>
+
+
+</body>
+
+</html>
