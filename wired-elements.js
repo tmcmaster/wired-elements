@@ -24,4 +24,4 @@ export { WiredTitle } from './lib/wired-title';
 export { WiredToggle } from './lib/wired-toggle';
 export { WiredToolbar } from './lib/wired-toolbar';
 export { WiredTooltip } from './lib/wired-tooltip';
-export { fireWindowEvent } from './wired-lib';
+export { fireWindowEvent } from './lib/wired-lib';
