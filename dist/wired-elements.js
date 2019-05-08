@@ -10,7 +10,7 @@ var WiredElements=function(e){"use strict";const t=new WeakMap,i=e=>"function"==
     </style>
 
     <slot></slot>
-`,is:"iron-pages",behaviors:[Jr,Qr],properties:{activateEvent:{type:String,value:null}},observers:["_selectedPageChanged(selected)"],_selectedPageChanged:function(e,t){this.async(this.notifyResize)}});var Zr=function(e,t,i,s){var n,r=arguments.length,o=r<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,i):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,i,s);else for(var a=e.length-1;a>=0;a--)(n=e[a])&&(o=(r<3?n(o):r>3?n(t,i,o):n(t,i))||o);return r>3&&o&&Object.defineProperty(t,i,o),o},eo=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};e.WiredCard=class extends ze{constructor(){super(...arguments),this.elevation=1,this.padding=10}render(){return N`
+`,is:"iron-pages",behaviors:[Jr,Qr],properties:{activateEvent:{type:String,value:null}},observers:["_selectedPageChanged(selected)"],_selectedPageChanged:function(e,t){this.async(this.notifyResize)}});var Zr=function(e,t,i,s){var n,r=arguments.length,o=r<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,i):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,i,s);else for(var a=e.length-1;a>=0;a--)(n=e[a])&&(o=(r<3?n(o):r>3?n(t,i,o):n(t,i))||o);return r>3&&o&&Object.defineProperty(t,i,o),o},eo=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};e.WiredCard=class extends ze{constructor(){super(...arguments),this.elevation=1,this.padding=10,this.mode="shrink"}render(){return N`
             <style>
                 :host {
                     display: inline-block;
@@ -68,16 +68,29 @@ var WiredElements=function(e){"use strict";const t=new WeakMap,i=e=>"function"==
                     //border: solid purple 2px;
                 }
                 #aaa {
-                    width: 100%;
+                    display: inline-block;
+                    box-sizing: border-box;
+                    //border: solid red 1px;
                 }
+                #aaa.shrink {
+                    width: 100%;
+                    max-height: 100%;
+                }
+                #aaa.stretch {
+                    width: 100%;
+                    height: 100%;
+                }
+                
             </style>
-            <div id="aaa" class="body">
+            
+            <div id="aaa" class="body ${this.mode}">
                 <slot id="body" @slotchange="${()=>this.slotChanged()}"></slot>
             </div>
             <div id="overlay" class="overlay">
                 <svg id="svg"></svg>
             </div>
-        `}slotChanged(){this.debug&&console.log("slot changed"),super.requestUpdate()}updated(){this.refreshElement()}refreshElement(){const e=this.shadowRoot.getElementById("svg");for(;e.hasChildNodes();)e.removeChild(e.lastChild);const t=this.getBoundingClientRect();this.padding=(t.width+t.height)/100;const i=this.padding,s=2*i,n=i,r=t.width-s,o=t.height-s,a=Math.min(Math.max(1,this.elevation),5),l=r+(a-1)*n+s,d=o+(a-1)*n+s;e.setAttribute("width",`${l}`),e.setAttribute("height",`${d}`),Ee(e,i,i,r,o);for(let t=1;t<a;t++)Pe(e,t*n,o+t*n,r+t*n,o+t*n).style.opacity=`${(85-10*t)/100}`,Pe(e,r+t*n,o+t*n,r+t*n,t*n).style.opacity=`${(85-10*t)/100}`,Pe(e,t*n,o+t*n,r+t*n,o+t*n).style.opacity=`${(85-10*t)/100}`,Pe(e,r+t*n,o+t*n,r+t*n,t*n).style.opacity=`${(85-10*t)/100}`;this.classList.add("wired-rendered")}},Zr([te({type:Number}),eo("design:type",Object)],e.WiredCard.prototype,"elevation",void 0),Zr([te({type:Number}),eo("design:type",Object)],e.WiredCard.prototype,"padding",void 0),e.WiredCard=Zr([Q("wired-card")],e.WiredCard);var to=function(e,t,i,s){var n,r=arguments.length,o=r<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,i):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,i,s);else for(var a=e.length-1;a>=0;a--)(n=e[a])&&(o=(r<3?n(o):r>3?n(t,i,o):n(t,i))||o);return r>3&&o&&Object.defineProperty(t,i,o),o},io=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};e.WiredPages=class extends ze{constructor(){super(),this.page=""}connectedCallback(){super.connectedCallback()}render(){return N`
+            
+        `}slotChanged(){this.debug&&console.log("slot changed"),super.requestUpdate()}updated(){this.refreshElement()}refreshElement(){const e=this.shadowRoot.getElementById("svg");for(;e.hasChildNodes();)e.removeChild(e.lastChild);const t=this.getBoundingClientRect();this.padding=(t.width+t.height)/100;const i=this.padding,s=2*i,n=i,r=t.width-s,o=t.height-s,a=Math.min(Math.max(1,this.elevation),5),l=r+(a-1)*n+s,d=o+(a-1)*n+s;e.setAttribute("width",`${l}`),e.setAttribute("height",`${d}`),Ee(e,i,i,r,o);for(let t=1;t<a;t++)Pe(e,t*n,o+t*n,r+t*n,o+t*n).style.opacity=`${(85-10*t)/100}`,Pe(e,r+t*n,o+t*n,r+t*n,t*n).style.opacity=`${(85-10*t)/100}`,Pe(e,t*n,o+t*n,r+t*n,o+t*n).style.opacity=`${(85-10*t)/100}`,Pe(e,r+t*n,o+t*n,r+t*n,t*n).style.opacity=`${(85-10*t)/100}`;this.classList.add("wired-rendered")}},Zr([te({type:Number}),eo("design:type",Object)],e.WiredCard.prototype,"elevation",void 0),Zr([te({type:Number}),eo("design:type",Object)],e.WiredCard.prototype,"padding",void 0),Zr([te({type:String}),eo("design:type",Object)],e.WiredCard.prototype,"mode",void 0),e.WiredCard=Zr([Q("wired-card")],e.WiredCard);var to=function(e,t,i,s){var n,r=arguments.length,o=r<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,i):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,i,s);else for(var a=e.length-1;a>=0;a--)(n=e[a])&&(o=(r<3?n(o):r>3?n(t,i,o):n(t,i))||o);return r>3&&o&&Object.defineProperty(t,i,o),o},io=function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)};e.WiredPages=class extends ze{constructor(){super(),this.page=""}connectedCallback(){super.connectedCallback()}render(){return N`
             <style>
                 :host { 
                     box-sizing: border-box;
