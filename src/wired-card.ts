@@ -5,6 +5,7 @@ import {rectangle, line} from './wired-lib';
 export class WiredCard extends WiredBase {
     @property({type: Number}) elevation = 1;
     @property({type: Number}) padding = 10;
+    @property({type: String}) mode = 'shrink';
 
     render(): TemplateResult {
         return html`
@@ -65,10 +66,22 @@ export class WiredCard extends WiredBase {
                     //border: solid purple 2px;
                 }
                 #aaa {
-                    width: 100%;
+                    display: inline-block;
+                    box-sizing: border-box;
+                    //border: solid red 1px;
                 }
+                #aaa.shrink {
+                    width: 100%;
+                    max-height: 100%;
+                }
+                #aaa.stretch {
+                    width: 100%;
+                    height: 100%;
+                }
+                
             </style>
-            <div id="aaa" class="body">
+            
+            <div id="aaa" class="body ${this.mode}">
                 <slot id="body" @slotchange="${() => this.slotChanged()}"></slot>
             </div>
             <div id="overlay" class="overlay">
