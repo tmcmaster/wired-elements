@@ -64,6 +64,8 @@ export class WiredCard extends WiredBase {
                 slot {
                     box-sizing: border-box;
                     //border: solid purple 2px;
+                    width: 100%;
+                    height: 100%;
                 }
                 #aaa {
                     display: inline-block;
