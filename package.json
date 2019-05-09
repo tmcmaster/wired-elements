@@ -1,24 +1,13 @@
 {
   "name": "wired-elements",
-  "version": "0.9.2",
+  "version": "1.0.0",
   "description": "Collection of hand-drawn sketchy web components",
-  "main": "wired-elements.js",
   "private": true,
-  "directories": {
-    "lib": "lib"
-  },
-  "scripts": {
-    "bootstrap": "npm install",
-    "dev": "polyserve --npm --module-resolution=node",
-    "tsc": "tsc",
-    "build": "rollup -c",
-    "release": "mkdir -p release; cp CHANGELOG.md README.md LICENSE dist/wired-elements-bundle.js lib/wired-* release/",
-    "bundle": "npm run tsc && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "directories": {},
+  "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wiredjs/wired-elements.git"
+    "url": "git+https://github.com/tmcmaster/wired-elements.git"
   },
   "keywords": [
     "webcomponent",
@@ -29,12 +18,12 @@
     "hand drawn",
     "wireframe"
   ],
-  "author": "Preet Shihn <preetshihn@gmail.com> (https://twitter.com/preetster)",
+  "author": "Tim McMaster <tim@mcmaster.id.au> (https://github.com/tmcmaster)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wiredjs/wired-elements/issues"
+    "url": "https://github.com/tmcmaster/wired-elements/issues"
   },
-  "homepage": "https://github.com/wiredjs/wired-elements#readme",
+  "homepage": "https://github.com/tmcmaster/wired-elements#readme",
   "devDependencies": {},
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.7",
