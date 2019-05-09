@@ -1,0 +1,36 @@
+{
+  "name": "wired-elements",
+  "version": "1.0.0",
+  "description": "Collection of hand-drawn sketchy web components",
+  "private": true,
+  "directories": {},
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmcmaster/wired-elements.git"
+  },
+  "keywords": [
+    "webcomponent",
+    "web component",
+    "rough",
+    "sketchy",
+    "hand-drawn",
+    "hand drawn",
+    "wireframe"
+  ],
+  "author": "Tim McMaster <tim@mcmaster.id.au> (https://github.com/tmcmaster)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tmcmaster/wired-elements/issues"
+  },
+  "homepage": "https://github.com/tmcmaster/wired-elements#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "@webcomponents/webcomponentsjs": "^2.2.7",
+    "@material/mwc-icon": "^0.5.0",
+    "@polymer/app-layout": "^3.0.2",
+    "@polymer/iron-pages": "^3.0.1",
+    "roughjs": "^3.1.0",
+    "wired-elements": "github:tmcmaster/wired-elements#release"
+  }
+}
