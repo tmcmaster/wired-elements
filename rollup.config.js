@@ -11,7 +11,7 @@ export default [
   {
     input: './lib/wired-elements.js',
     output: {
-      file: `./dist/wired-elements.js`,
+      file: `./dist/wired-elements-bundle.js`,
       format: 'iife',
       name: 'WiredElements'
     },

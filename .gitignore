@@ -9,3 +9,6 @@ packages/*/lib
 junk
 hold
 lib
+package-lock.json
+release
+dist

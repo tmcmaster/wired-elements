@@ -12,6 +12,7 @@
     "dev": "polyserve --npm --module-resolution=node",
     "tsc": "tsc",
     "build": "rollup -c",
+    "release": "mkdir -p release; cp CHANGELOG.md README.md LICENSE dist/wired-elements-bundle.js lib/wired-* release/",
     "bundle": "npm run tsc && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
