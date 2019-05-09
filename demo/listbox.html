@@ -1,0 +1,61 @@
+<html lang="en">
+
+<head>
+    <title>wired-listbox</title>
+
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="module" src="../node_modules/wired-elements/wired-elements-bundle.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+            font-family: sans-serif;
+            line-height: 1.5;
+        }
+
+        #menu > wired-item {
+            --wired-item-selected-bg: black;
+            --wired-item-hover-bg: blue;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <wired-listbox id="combo" selected="two">
+        <wired-item value="one">Number One</wired-item>
+        <wired-item value="two">Number Two</wired-item>
+        <wired-item value="three">Number Three</wired-item>
+    </wired-listbox>
+</div>
+<div style="margin-top: 10px;">
+    <wired-listbox horizontal selected="two"
+                   style="--wired-item-selected-color: darkred; --wired-item-selected-bg: pink;">
+        <wired-item value="one">Number One</wired-item>
+        <wired-item value="two">Number Two</wired-item>
+        <wired-item value="three">Number Three</wired-item>
+    </wired-listbox>
+</div>
+<div id="label"></div>
+
+<div>
+    <wired-listbox id="menu">
+        <wired-item value="one">Number One</wired-item>
+        <wired-item value="two">Number Two</wired-item>
+        <wired-item value="three">Number Three</wired-item>
+    </wired-listbox>
+</div>
+
+<script>
+    const combo = document.getElementById('combo');
+    const label = document.getElementById('label');
+    combo.addEventListener('selected', () => {
+        label.textContent = combo.selected;
+    });
+</script>
+
+<wired-helper></wired-helper>
+</body>
+
+</html>

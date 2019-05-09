@@ -1,7 +1,4 @@
-node_modules
-bower_components
-build
-demo
-lerna-debug.log
-npm-debug.log
-packages/*/lib
+hold
+junk
+release
+.idea
