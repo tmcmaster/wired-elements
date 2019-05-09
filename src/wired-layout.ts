@@ -22,4 +22,7 @@ export class WiredLayout extends WiredBase {
             <slot name="right"></slot>
         `;
     }
+
+    refreshElement(): void {
+    }
 }

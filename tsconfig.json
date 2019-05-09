@@ -22,9 +22,9 @@
     "node_modules"
   ],
   "compilerOptions": {
-    "outDir": "./lib"
+    "outDir": "lib"
   },
   "include": [
-    "./src"
+    "src"
   ]
 }

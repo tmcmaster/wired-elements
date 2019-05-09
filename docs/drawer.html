@@ -1,0 +1,67 @@
+<html lang="en">
+
+<head>
+    <title>wired-drawer</title>
+
+    <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="module" src="./node_modules/wired-elements/wired-elements-bundle.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+            font-family: sans-serif;
+            line-height: 1.5;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        wired-card {
+            width: 100%;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        div {
+            box-sizing: border-box;
+            padding: 5px;
+            border: solid lightgrey 1px;
+            width: 100%;
+            height: 100%;
+        }
+
+        #search {
+            width: 80%;
+        }
+    </style>
+
+</head>
+
+<body>
+<div>
+    <wired-card>
+        <wired-layout>
+            <wired-icon-button slot="left" id="menu" onclick="openDrawer()">menu</wired-icon-button>
+            <wired-input slot="center" id="search" value="this is an input"></wired-input>
+            <wired-icon-button slot="right" id="more">more_horiz</wired-icon-button>
+        </wired-layout>
+    </wired-card>
+</div>
+
+<wired-drawer id="drawer">
+    <h2>Menu</h2>
+</wired-drawer>
+<wired-helper></wired-helper>
+
+<script>
+    function openDrawer() {
+        console.log('About to open drawer.');
+        const drawer = document.getElementById('drawer');
+        drawer.open();
+    }
+</script>
+</body>
+
+</html>

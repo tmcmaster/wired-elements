@@ -1,0 +1,118 @@
+<html lang="en">
+
+<head>
+    <title>wired-app</title>
+    <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="module" src="./node_modules/wired-elements/wired-elements-bundle.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        wired-app {
+            border: solid red 1px;
+            padding: 10px;
+        }
+
+        wired-layout.title {
+            --wired-layout-justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        wired-layout.title > wired-card {
+            width: 90%;
+        }
+
+        wired-layout.title > wired-card > wired-layout {
+            --wired-layout-justify-content: space-between;
+        }
+
+        #search {
+            width: 80%;
+        }
+
+        wired-tabs {
+            height: 500px;
+        }
+
+        wired-page {
+            width: 100%;
+            height: 100%;
+        }
+
+        wired-pages {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            border: solid purple 2px;;
+        }
+    </style>
+</head>
+
+<body>
+
+<wired-app id="app">
+
+    <wired-layout class="title">
+        <wired-card>
+            <wired-layout>
+                <wired-icon-button slot="left" id="menu">menu</wired-icon-button>
+                <wired-input slot="center" id="search" value="this is an input"></wired-input>
+                <wired-icon-button slot="right" id="more">more_horiz</wired-icon-button>
+            </wired-layout>
+        </wired-card>
+    </wired-layout>
+
+    <wired-tabs selected="Three">
+        <wired-tab name="One">
+            <h4>Card 1</h4>
+            <p>
+                There is a theory which states that if ever anyone discovers exactly what the Universe is for and why it is here,
+                it will instantly disappear and be replaced by something even more bizarre and inexplicable.
+                There is another theory which states that this has already happened. Douglas Adams
+                <wired-input value="this is an input"></wired-input>
+            </p>
+            <wired-input value="this is an input"></wired-input>
+        </wired-tab>
+        <wired-tab name="Two">
+            <h4>Card 2</h4>
+            <p>
+                There is a theory which states that if ever anyone discovers exactly what the Universe is for and why it is here,
+                it will instantly disappear and be replaced by something even more bizarre and inexplicable.
+                There is another theory which states that this has already happened. Douglas Adams
+            </p>
+        </wired-tab>
+        <wired-tab name="Three">
+            <h4>Card 3</h4>
+            <p>
+                There is a theory which states that if ever anyone discovers exactly what the Universe is for and why it is here,
+                it will instantly disappear and be replaced by something even more bizarre and inexplicable.
+                There is another theory which states that this has already happened. Douglas Adams
+            </p>
+        </wired-tab>
+        <wired-tab name="Four">
+            <h4>Card 4</h4>
+            <p>
+                There is a theory which states that if ever anyone discovers exactly what the Universe is for and why it is here,
+                it will instantly disappear and be replaced by something even more bizarre and inexplicable.
+                There is another theory which states that this has already happened. Douglas Adams
+            </p>
+        </wired-tab>
+    </wired-tabs>
+
+
+    <wired-drawer>
+        <wired-title>Menu</wired-title>
+        <wired-input value="this is an input"></wired-input>
+    </wired-drawer>
+
+</wired-app>
+
+</body>
+
+</html>
