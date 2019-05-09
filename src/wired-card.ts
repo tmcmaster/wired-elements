@@ -18,7 +18,7 @@ export class WiredCard extends WiredBase {
                     opacity: 0;
                     /*height: 200px;*/
                     /*width: 100px;*/
-                    //border: solid blue 2px;
+                    /*border: solid blue 2px;*/
                 }
                 
                 :host(.wired-rendered) {
@@ -54,23 +54,23 @@ export class WiredCard extends WiredBase {
                 }
                 div.body {
                     display: inline-block;
-                    //border: solid orange 2px;
+                    /*border: solid orange 2px;*/
                     padding: 5px;
                 }
                 div.overlay {
-                    //border: solid green 2px;
+                    /*border: solid green 2px;*/
                 }
                 
                 slot {
                     box-sizing: border-box;
-                    //border: solid purple 2px;
-                    width: 100%;
-                    height: 100%;
+                    /*border: solid purple 2px;*/
+                    /*width: 100%;*/
+                    /*height: 100%;*/
                 }
                 #aaa {
                     display: inline-block;
                     box-sizing: border-box;
-                    //border: solid red 1px;
+                    /*border: solid red 1px;*/
                 }
                 #aaa.shrink {
                     width: 100%;
