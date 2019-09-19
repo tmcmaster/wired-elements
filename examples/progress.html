@@ -1,72 +1,76 @@
-<html>
+<html lang="en">
 
 <head>
-  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-  <script type="module" src="../packages/wired-progress/lib/wired-progress.js"></script>
-  <script type="module" src="../packages/wired-button/lib/wired-button.js"></script>
+    <title>wired-progress</title>
 
-  <style>
-    body {
-      margin: 0;
-      padding: 10px;
-      font-family: sans-serif;
-      line-height: 1.5;
-    }
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="module" src="../dist/wired-elements.js"></script>
 
-    wired-progress {
-      margin: 10px;
-    }
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+            font-family: sans-serif;
+            line-height: 1.5;
+        }
 
-    wired-button {
-      margin: 0 10px;
-    }
+        wired-progress {
+            margin: 10px;
+            width: 200px;
+            height: 50px;
+        }
 
-    .custom {
-      --wired-progress-color: rgba(220, 0, 50, 0.1);
-      --wired-progress-label-color: green;
-      --wired-progress-font-size: 24px;
-      width: 300px;
-    }
-  </style>
+        wired-button {
+            margin: 0 10px;
+        }
+
+        .custom {
+            --wired-progress-color: rgba(220, 0, 50, 0.1);
+            --wired-progress-label-color: green;
+            --wired-progress-font-size: 24px;
+            width: 300px;
+        }
+    </style>
 </head>
 
 <body>
-  <wired-progress value="25"></wired-progress>
-  <wired-progress value="10" min="5" max="15"></wired-progress>
-  <wired-progress value="65" percentage></wired-progress>
-  <wired-progress class="custom" value="30"></wired-progress>
+<wired-progress value="25"></wired-progress>
+<wired-progress value="10" min="5" max="15"></wired-progress>
+<wired-progress value="65" percentage></wired-progress>
+<wired-progress class="custom" value="30"></wired-progress>
 
-  <section style="margin-top: 40px;">
+<section style="margin-top: 40px;">
     <wired-progress id="progress"></wired-progress>
     <div style="margin-top: 16px;">
-      <wired-button id="btns">Start</wired-button>
-      <wired-button id="btnr">Reset</wired-button>
+        <wired-button id="start">Start</wired-button>
+        <wired-button id="reset">Reset</wired-button>
     </div>
-  </section>
+</section>
 
-  <script>
-    const prog = document.getElementById('progress')
+<wired-helper></wired-helper>
+<script>
+    const progress = document.getElementById('progress');
     let timer = 0;
-    document.getElementById('btns').addEventListener('click', () => {
-      if (timer) {
-        window.clearInterval(timer);
-      }
-      timer = window.setInterval(() => {
-        if (prog.value >= 100) {
-          prog.value = 0;
-        } else {
-          prog.value = prog.value + 1;
+    document.getElementById('start').addEventListener('click', () => {
+        if (timer) {
+            window.clearInterval(timer);
         }
-      }, 100);
+        timer = window.setInterval(() => {
+            if (progress.value >= 100) {
+                progress.value = 0;
+            } else {
+                progress.value = progress.value + 1;
+            }
+        }, 100);
     });
-    document.getElementById('btnr').addEventListener('click', () => {
-      if (timer) {
-        window.clearInterval(timer);
-        timer = 0;
-      }
-      prog.value = 0;
+    document.getElementById('reset').addEventListener('click', () => {
+        if (timer) {
+            window.clearInterval(timer);
+            timer = 0;
+        }
+        progress.value = 0;
     });
-  </script>
+</script>
 </body>
 
 </html>

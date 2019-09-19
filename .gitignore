@@ -1,10 +1,14 @@
-node_modules
+/node_modules
 bower_components
 build
 demo
 lerna-debug.log
 npm-debug.log
 packages/*/lib
-hold
-junk
 .idea
+junk
+hold
+package-lock.json
+/lib
+release
+dist

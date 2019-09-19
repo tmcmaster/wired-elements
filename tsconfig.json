@@ -20,5 +20,11 @@
   },
   "exclude": [
     "node_modules"
+  ],
+  "compilerOptions": {
+    "outDir": "lib"
+  },
+  "include": [
+    "src"
   ]
 }

@@ -1,0 +1,197 @@
+<html lang="en">
+
+<head>
+    <title>wired-pages</title>
+
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="module" src="../dist/wired-elements.js"></script>
+
+    <style>
+        wired-pages {
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+        }
+
+        .middle {
+            box-sizing: border-box;
+            padding-top: 10px;
+        }
+
+        wired-card.app {
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+        }
+
+        wired-card.full {
+            width: 100%;
+        }
+
+        wired-layout {
+            width: 100%;
+        }
+
+        #search {
+            width: 80%;
+        }
+
+        bottom-sheet {
+            width: 100%;
+            height: 200px;
+            box-sizing: border-box;
+            border: solid red 1px;
+        }
+
+        wired-card.aaa {
+            width: 50%;
+            height: 40%;
+            box-sizing: border-box;
+        }
+
+        wired-card.aaa > wired-input {
+            width: 97%;
+        }
+    </style>
+</head>
+
+<body>
+<wired-card class="app">
+    <wired-pages id="pages" page="page-3">
+        <wired-page name="page-1">
+            <h2 class="top" slot="top">Page One</h2>
+            <div class="middle" slot="middle">Middle</div>
+            <wired-layout slot="bottom">
+                <wired-button onclick="paging.prevPage()">Prev</wired-button>
+                <wired-button onclick="paging.firstPage()">Home</wired-button>
+                <wired-button onclick="paging.nextPage()">Next</wired-button>
+            </wired-layout>
+            <wired-drawer slot="drawer">
+                <h2>Menu 1</h2>
+            </wired-drawer>
+        </wired-page>
+
+        <wired-page name="page-2">
+            <wired-layout slot="top">
+                <wired-card class="full">
+                    <wired-layout>
+                        <wired-icon-button slot="left" id="menu" onclick="openDrawer()">menu</wired-icon-button>
+                        <wired-input slot="center" id="search" value="this is an input"></wired-input>
+                        <wired-icon-button slot="right" id="more">more_horiz</wired-icon-button>
+                    </wired-layout>
+                </wired-card>
+            </wired-layout>
+            <div class="middle" slot="middle">
+                <wired-card>this is a card</wired-card>
+                <wired-card>another card</wired-card>
+                <wired-card>more</wired-card>
+                <wired-card>and more</wired-card>
+                <wired-button id="btn">Submit</wired-button>
+                <wired-button id="btn">Submit</wired-button>
+                <wired-button id="btn">Submit</wired-button>
+                <wired-card>this is a card</wired-card>
+                <wired-card>another card</wired-card>
+                <wired-card>more</wired-card>
+                <wired-card>and more</wired-card>
+            </div>
+            <wired-layout slot="bottom">
+                <wired-button onclick="paging.prevPage()">Prev</wired-button>
+                <wired-button onclick="paging.firstPage()">Home</wired-button>
+                <wired-button onclick="paging.nextPage()">Next</wired-button>
+            </wired-layout>
+            <wired-drawer id="drawer" slot="drawer">
+                <h2>Menu 2</h2>
+            </wired-drawer>
+        </wired-page>
+
+        <wired-page name="page-3">
+
+            <wired-title slot="top">Page 3</wired-title>
+            <wired-layout slot="middle" class="full">
+                <wired-card slot="left" class="aaa">
+                    <wired-input placeholder="input one"></wired-input>
+                    <wired-input placeholder="input two"></wired-input>
+                    <wired-radio-group id="rg" selected="one">
+                        <wired-radio name="one">One</wired-radio>
+                        <wired-radio name="two">Two</wired-radio>
+                        <wired-radio name="three">Three</wired-radio>
+                        <wired-radio name="four">Four</wired-radio>
+                    </wired-radio-group>
+                </wired-card>
+            </wired-layout>
+            <wired-layout slot="bottom">
+                <wired-button onclick="paging.prevPage()">Prev</wired-button>
+                <wired-button onclick="paging.firstPage()">Home</wired-button>
+                <wired-button onclick="paging.nextPage()">Next</wired-button>
+            </wired-layout>
+
+            <wired-drawer slot="drawer">
+                <h2>Menu 3</h2>
+            </wired-drawer>
+
+
+        </wired-page>
+        <wired-page name="page-4">
+            <span>Page 4</span>
+            <wired-layout slot="bottom">
+                <wired-button onclick="paging.prevPage()">Prev</wired-button>
+                <wired-button onclick="paging.firstPage()">Home</wired-button>
+                <wired-button onclick="paging.nextPage()">Next</wired-button>
+            </wired-layout>
+            <wired-drawer slot="drawer">
+                <h2>Menu 4</h2>
+            </wired-drawer>
+        </wired-page>
+    </wired-pages>
+
+
+</wired-card>
+
+<wired-helper></wired-helper>
+
+<script>
+    function openDrawer() {
+        console.log('About to open drawer.');
+        const drawer = document.getElementById('drawer');
+        drawer.open();
+    }
+
+    class Paging {
+        constructor() {
+            this.pages = document.getElementById("pages");
+            this.page = 3;
+        }
+
+        nextPage() {
+            if (this.page < 4) {
+                this.changeToPage(this.page + 1);
+            }
+        }
+
+        firstPage() {
+            if (this.page !== 1) {
+                this.changeToPage(1);
+            }
+        }
+
+        prevPage() {
+            if (this.page > 1) {
+                this.changeToPage(this.page - 1);
+            }
+        }
+
+        changeToPage(page) {
+            this.page = page;
+            const pageName = 'page-' + page;
+            console.log('Changing to page ' + pageName);
+            this.pages.page = pageName;
+        }
+    }
+
+    let paging = new Paging();
+
+
+</script>
+</body>
+
+</html>
