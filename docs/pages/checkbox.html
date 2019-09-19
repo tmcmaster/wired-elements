@@ -1,0 +1,46 @@
+<html lang="en">
+
+<head>
+    <title>wired-checkbox</title>
+
+    <script src="../lib/webcomponents-loader.js"></script>
+    <script type="module" src="../lib/wired-elements.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+            font-family: sans-serif;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+
+<wired-checkbox id="checkbox">Checkbox label</wired-checkbox>
+<div id="label"></div>
+
+<div style="padding: 40px 0;">
+    <wired-radio id="radio">Radio label</wired-radio>
+    <div id="label2"></div>
+</div>
+
+<wired-helper></wired-helper>
+
+<script>
+    const checkbox = document.getElementById('checkbox');
+    const label = document.getElementById('label');
+    checkbox.addEventListener('change', () => {
+        label.textContent = checkbox.checked;
+    });
+
+    const radio = document.getElementById('radio');
+    const label2 = document.getElementById('label2');
+    radio.addEventListener('change', () => {
+        label2.textContent = radio.checked;
+    });
+</script>
+</body>
+
+</html>

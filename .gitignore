@@ -8,7 +8,7 @@ packages/*/lib
 .idea
 junk
 hold
-lib
 package-lock.json
+/lib
 release
 dist
