@@ -22,7 +22,7 @@ Documentation for components [TBD]()
 
 ## Demo
 
-Demo of all components is available at [TBD]().
+Demo of all components is available at [https://tmcmaster.github.io/wired-elements](https://tmcmaster.github.io/wired-elements).
 
 ## Acknowledgments 
 

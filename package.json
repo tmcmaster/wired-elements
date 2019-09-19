@@ -1,6 +1,6 @@
 {
   "name": "wired-elements",
-  "version": "0.9.2",
+  "version": "0.1.0",
   "description": "Collection of hand-drawn sketchy web components",
   "main": "wired-elements.js",
   "private": true,
@@ -29,12 +29,12 @@
     "hand drawn",
     "wireframe"
   ],
-  "author": "Preet Shihn <preetshihn@gmail.com> (https://twitter.com/preetster)",
+  "author": "Tim McMaster",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wiredjs/wired-elements/issues"
+    "url": "https://github.com/tmcmaster/wired-elements/issues"
   },
-  "homepage": "https://github.com/wiredjs/wired-elements#readme",
+  "homepage": "https://github.com/tmcmaster/wired-elements#readme",
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.7",
     "lerna": "^3.13.4",
