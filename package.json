@@ -1,5 +1,5 @@
 {
-  "name": "wired-elements",
+  "name": "@wonkytech/wired-elements",
   "version": "0.1.0",
   "description": "Collection of hand-drawn sketchy web components",
   "main": "wired-elements.js",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wiredjs/wired-elements.git"
+    "url": "git+https://github.com/tmcmaster/wired-elements.git"
   },
   "keywords": [
     "webcomponent",
