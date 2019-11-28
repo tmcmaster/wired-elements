@@ -9,7 +9,7 @@ function onwarn(warning) {
 
 export default [
   {
-    input: './lib/wired-elements.js',
+    input: './src/wired-elements.js',
     output: {
       file: `./dist/wired-elements-bundle.js`,
       format: 'iife',
