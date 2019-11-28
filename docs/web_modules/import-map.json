@@ -1,5 +1,5 @@
 {
   "imports": {
-    "roughjs": "./roughjs.js"
+    "@wonkytech/wired-elements": "./@wonkytech/wired-elements.js"
   }
 }

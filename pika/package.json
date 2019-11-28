@@ -3,6 +3,6 @@
         "pika:build": "npm install && npx @pika/web --dest ../docs/web_modules"
     },
     "dependencies": {
-        "@wonkytech/wired-elements": "^0.1.3"
+        "@wonkytech/wired-elements": "^2.0.3"
     }
 }
