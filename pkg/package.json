@@ -1,7 +1,7 @@
 {
   "name": "@wonkytech/wired-elements",
   "description": "Collection of hand-drawn sketchy web components",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "license": "MIT",
   "files": [
     "dist-*/",
