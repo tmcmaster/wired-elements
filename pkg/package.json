@@ -1,0 +1,55 @@
+{
+  "name": "@wonkytech/wired-elements",
+  "description": "Collection of hand-drawn sketchy web components",
+  "version": "0.1.0",
+  "license": "MIT",
+  "files": [
+    "dist-*/",
+    "bin/"
+  ],
+  "pika": true,
+  "sideEffects": true,
+  "keywords": [
+    "webcomponent",
+    "web component",
+    "rough",
+    "sketchy",
+    "hand-drawn",
+    "hand drawn",
+    "wireframe"
+  ],
+  "homepage": "https://github.com/tmcmaster/wired-elements#readme",
+  "bugs": {
+    "url": "https://github.com/tmcmaster/wired-elements/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmcmaster/wired-elements.git"
+  },
+  "dependencies": {
+    "@material/mwc-icon": "^0.5.0",
+    "@polymer/app-layout": "^3.0.2",
+    "@polymer/iron-pages": "^3.0.1",
+    "roughjs": "^3.1.0"
+  },
+  "devDependencies": {
+    "@pika/pack": "^0.5.0",
+    "@pika/plugin-build-node": "^0.6.1",
+    "@pika/plugin-build-types": "^0.6.1",
+    "@pika/plugin-build-web": "^0.6.1",
+    "@pika/plugin-standard-pkg": "^0.6.1",
+    "@pika/types": "^0.6.1",
+    "@webcomponents/webcomponentsjs": "^2.2.7",
+    "lerna": "^3.13.4",
+    "polyserve": "^0.27.15",
+    "rollup": "^0.66.6",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-terser": "^4.0.1",
+    "tslint": "^5.15.0",
+    "typescript": "^3.4.1"
+  },
+  "private": true,
+  "esnext": "dist-src/index.js",
+  "main": "dist-node/index.js",
+  "module": "dist-web/index.js"
+}

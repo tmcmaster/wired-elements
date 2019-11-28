@@ -5,16 +5,27 @@
   "main": "wired-elements.js",
   "private": true,
   "directories": {
-    "lib": "lib"
+    "lib": "src"
   },
   "scripts": {
     "bootstrap": "npm install",
     "dev": "polyserve --npm --module-resolution=node",
     "tsc": "tsc",
-    "build": "rollup -c",
-    "release": "mkdir -p release; cp CHANGELOG.md README.md LICENSE dist/wired-elements-bundle.js lib/wired-* release/",
-    "bundle": "npm run tsc && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:src": "rollup -c",
+    "build:release": "mkdir -p release; cp CHANGELOG.md README.md LICENSE dist/wired-elements-bundle.js lib/wired-* release/",
+    "build:bundle": "npm run tsc && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "pika build",
+    "version": "npm run build",
+    "publish": "pika publish",
+    "demo": "owc-dev-server",
+    "demo:open": "owc-dev-server --open demo",
+    "docs:clear": "rm -rf docs/web_modules",
+    "docs:install": "npm install && npx @pika/web --dest docs/web_modules",
+    "docs:pika": "(cd pika; npm run pika:build)",
+    "build:docs": "npm run docs:clear && npm run docs:install && npm run docs:pika",
+    "docs": "http-server docs",
+    "docs:open": "http-server --open docs"
   },
   "repository": {
     "type": "git",
@@ -36,6 +47,12 @@
   },
   "homepage": "https://github.com/tmcmaster/wired-elements#readme",
   "devDependencies": {
+    "@pika/pack": "^0.5.0",
+    "@pika/plugin-build-node": "^0.6.1",
+    "@pika/plugin-build-types": "^0.6.1",
+    "@pika/plugin-build-web": "^0.6.1",
+    "@pika/plugin-standard-pkg": "^0.6.1",
+    "@pika/types": "^0.6.1",
     "@webcomponents/webcomponentsjs": "^2.2.7",
     "lerna": "^3.13.4",
     "polyserve": "^0.27.15",
@@ -50,5 +67,20 @@
     "@polymer/app-layout": "^3.0.2",
     "@polymer/iron-pages": "^3.0.1",
     "roughjs": "^3.1.0"
+  },
+  "pika": true,
+  "sideEffects": true,
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-standard-pkg"
+      ],
+      [
+        "@pika/plugin-build-node"
+      ],
+      [
+        "@pika/plugin-build-web"
+      ]
+    ]
   }
 }

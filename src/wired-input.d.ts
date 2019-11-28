@@ -1,0 +1,33 @@
+import { WiredBase, TemplateResult, PropertyValues } from './wired-base';
+export declare class WiredInput extends WiredBase {
+    placeholder: string;
+    name?: string;
+    min?: string;
+    max?: string;
+    step?: string;
+    type: string;
+    autocomplete: string;
+    autocapitalize: string;
+    autocorrect: string;
+    disabled: boolean;
+    required: boolean;
+    autofocus: boolean;
+    readonly: boolean;
+    minlength?: number;
+    maxlength?: number;
+    size?: number;
+    private pendingValue?;
+    private resizeHandler?;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+    private debounce;
+    render(): TemplateResult;
+    createRenderRoot(): ShadowRoot;
+    readonly input: HTMLInputElement | null;
+    value: string;
+    firstUpdated(): void;
+    updated(changed: PropertyValues): void;
+    refreshElement(): void;
+    private refreshDisabledState;
+    private onChange;
+}
