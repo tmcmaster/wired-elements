@@ -14,7 +14,6 @@
     "build:src": "rollup -c",
     "build:release": "mkdir -p release; cp CHANGELOG.md README.md LICENSE dist/wired-elements-bundle.js lib/wired-* release/",
     "build:bundle": "npm run tsc && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "pika build",
     "version": "npm run build",
     "publish": "pika publish",
